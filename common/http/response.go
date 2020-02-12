@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"terraform-provider-cds/cds-sdk-go/common/errors"
+	"github.com/capitalonline/cds-gic-sdk-go/common/errors"
 )
 
 type Response interface {

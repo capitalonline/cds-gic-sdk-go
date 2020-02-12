@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"sort"
 	"strings"
-	_http "terraform-provider-cds/cds-sdk-go/common/http"
+	_http "github.com/capitalonline/cds-gic-sdk-go/common/http"
 )
 
 const (

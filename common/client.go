@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"terraform-provider-cds/cds-sdk-go/common/errors"
-	cdshttp "terraform-provider-cds/cds-sdk-go/common/http"
-	"terraform-provider-cds/cds-sdk-go/common/profile"
+	"github.com/capitalonline/cds-gic-sdk-go/common/errors"
+	cdshttp "github.com/capitalonline/cds-gic-sdk-go/common/http"
+	"github.com/capitalonline/cds-gic-sdk-go/common/profile"
 )
 
 type Client struct {

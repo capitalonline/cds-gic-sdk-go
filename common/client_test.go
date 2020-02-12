@@ -3,7 +3,7 @@ package common_test
 import (
 	"testing"
 
-	"terraform-provider-cds/cds-sdk-go/common"
+	"github.com/capitalonline/cds-gic-sdk-go/common"
 )
 
 func TestClient_Send(t *testing.T) {

@@ -5,9 +5,9 @@ import (
 	"errors"
 	"time"
 
-	"terraform-provider-cds/cds-sdk-go/common"
-	cdshttp "terraform-provider-cds/cds-sdk-go/common/http"
-	"terraform-provider-cds/cds-sdk-go/common/profile"
+	"github.com/capitalonline/cds-gic-sdk-go/common"
+	cdshttp "github.com/capitalonline/cds-gic-sdk-go/common/http"
+	"github.com/capitalonline/cds-gic-sdk-go/common/profile"
 )
 
 const ApiVersion = "2019-08-08"

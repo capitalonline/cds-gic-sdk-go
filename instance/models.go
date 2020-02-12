@@ -3,7 +3,7 @@ package instance
 import (
 	"encoding/json"
 
-	cdshttp "terraform-provider-cds/cds-sdk-go/common/http"
+	cdshttp "github.com/capitalonline/cds-gic-sdk-go/common/http"
 )
 
 // Create Instance Request

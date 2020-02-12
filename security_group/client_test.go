@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"testing"
 
-	"terraform-provider-cds/cds-sdk-go/common"
-	"terraform-provider-cds/cds-sdk-go/common/profile"
-	"terraform-provider-cds/cds-sdk-go/common/regions"
-	"terraform-provider-cds/cds-sdk-go/security_group_rule"
+	"github.com/capitalonline/cds-gic-sdk-go/common"
+	"github.com/capitalonline/cds-gic-sdk-go/common/profile"
+	"github.com/capitalonline/cds-gic-sdk-go/common/regions"
+	"github.com/capitalonline/cds-gic-sdk-go/security_group_rule"
 )
 
 func TestClient_CreateSecurityGroup(t *testing.T) {
