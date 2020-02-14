@@ -1,5 +1,4 @@
-
-English | [简体中文](README-CN.md)
+[English](./README.md) | 简体中文
 
 <p align="center">
 <a href=" https://www.alibabacloud.com"><img src="https://www.capitalonline.net/templets/default/icon/logo_header.png"></a>
@@ -7,43 +6,41 @@ English | [简体中文](README-CN.md)
 
 <h1 align="center">CapitalOnline Cloud SDK for Go</h1>
 
-The project is aim to build the golang sdk for [CapitalOnline](https://www.capitalonline.net) Cloud Platform. It allows to access CapitalOnline Cloud Service such as GIC,GBS,GPN and manage your resources easily.
+欢迎使用`CapitalOnline Cloud SDK for Go`，它可以管理[首都在线](https://www.capitalonline.net)多个全球服务，如`首云全球云服务器`、`首云块存储`、`首云全球互通网络`等，帮您轻松管理所有在线资源。基于首云官方[OpenAPI文档](https://github.com/capitalonline/openapi/blob/master/README.md)。
 
-It is based on the official [Open API](https://github.com/capitalonline/openapi/blob/master/README.md).
+## 功能特点
 
-## Features
+你可以通过SDK管理各种资源，[这里](https://github.com/capitalonline/openapi/blob/master/%E9%A6%96%E4%BA%91OpenAPI(v1.2).md)可以看到所有可用接口清单。下面列出部分接口列表：
 
-You can find all the available actions from [here](https://github.com/capitalonline/openapi/blob/master/%E9%A6%96%E4%BA%91OpenAPI(v1.2).md). List some of them below:
-
-- [X] Instance Management
+- [X] 实例管理
   - [X] CreateInstance
   - [X] DeleteInstance
   - [X] StopInstance
   - [X] RebootInstance
   - [X] ModifyInstanceChargeType
-- [X] Virtual Datacenter Management
+- [X] 虚拟数据中心管理
   - [X] DescribeVdc
   - [X] CreateVdc
   - [X] DeleteVdc
   - [X] CreatePublicNetwork
   - [X] CreatePrivateNetwork
-- [X] Security Group Management
+- [X] 安全组管理
   - [X] CreateSecurityGroup
   - [X] DeleteSecurityGroup
   - [X] ForceDeleteSecurityGroup
   - [X] DescribeSecurityGroupAttribute
   - [X] ModifySecurityGroupAttribute
-- [X] And More
+- [X] 还有更多
 
-## Installation
+## 使用指南
 
-Use `go get` to install SDK：
+使用 `go get` 下载安装 SDK
 
 ```sh
 $ go get -u github.com/capitalonline/cds-gic-sdk-go
 ```
 
-## Examples
+## 使用示例
 
 ```go
     	// Init a credential with Access Key Id and Secret Access Key
@@ -93,16 +90,16 @@ $ go get -u github.com/capitalonline/cds-gic-sdk-go
 	}
 ```
 
-Find more from [example](./example).
+更多示例参见 [example](./example) 目录。
 
-## Contributing
+## 如何贡献
 
-We work hard to provide a high-quality and useful SDK for CapitalOnline Cloud, and we greatly value feedback and contributions from our community. Please submit your issuesor pull requests through GitHub.
+欢迎提交 Issue 或 Pull Request。
 
-## References
+## 相关参考
 
 - [CDS OpenAPI Explorer](https://github.com/capitalonline/openapi)
 
-## License
+## 许可证
 
 [Apache License v2.0](./LICENSE)
