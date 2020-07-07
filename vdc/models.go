@@ -304,6 +304,38 @@ func (r *DeleteVdcResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
 }
 
+// Modify VDC Name Request
+type ModifyVdcNameRequest struct {
+	*cdshttp.BaseRequest
+	VdcId   *string `json:"VdcId" name:"VdcId"`
+	VdcName *string `json:"VdcName" name:"VdcName"`
+}
+
+func (r *ModifyVdcNameRequest) ToJsonString() string {
+	b, _ := json.Marshal(r)
+	return string(b)
+}
+
+func (r *ModifyVdcNameRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Modify VDC Name Reponse
+type ModifyVdcNameResponse struct {
+	*cdshttp.BaseResponse
+	Code   *string `json:"Code"`
+	TaskId *string `json:"TaskId"`
+}
+
+func (r *ModifyVdcNameResponse) ToJsonString() string {
+	b, _ := json.Marshal(r)
+	return string(b)
+}
+
+func (r *ModifyVdcNameResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
 // Modify Public Network Request
 type ModifyPublicNetworkRequest struct {
 	*cdshttp.BaseRequest
@@ -339,7 +371,7 @@ func (r *ModifyPublicNetworkResponse) FromJsonString(s string) error {
 type AddPublicIpRequest struct {
 	*cdshttp.BaseRequest
 	PublicId *string `json:"PublicId" name:"PublicId"`
-	Number   *string `json:"Qos" name:"Qos"`
+	Number   *int    `json:"Number" name:"Number"`
 }
 
 func (r *AddPublicIpRequest) ToJsonString() string {

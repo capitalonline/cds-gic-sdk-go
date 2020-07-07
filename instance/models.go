@@ -14,6 +14,7 @@ type AddInstanceRequest struct {
 	InstanceName       *string      `json:"InstanceName,omitempty" name:"InstanceName"`
 	InstanceChargeType *string      `json:"InstanceChargeType,omitempty" name:"InstanceChargeType"`
 	Password           *string      `json:"Password,omitempty" name:"Password"`
+	PublicKey          *string      `json:"PublicKey,omitempty" name:"PublicKey"`
 	Cpu                *int         `json:"Cpu,omitempty" name:"Cpu"`
 	Ram                *int         `json:"Ram,omitempty" name:"Ram"`
 	InstanceType       *string      `json:"InstanceType,omitempty" name:"InstanceType"`
@@ -88,10 +89,13 @@ type DescribeReturnInfo struct {
 	VdcId                   *string    `json:"VdcId"`
 	VdcName                 *string    `json:"VdcName"`
 	Disks                   *DisksInfo `json:"Disks"`
+	Cpu                     *int       `json:"Cpu"`
+	Ram                     *int       `json:"Ram"`
 	PrivateNetworkInterface []*PrivateNetworkInterfaceInfo
-	PublicNetworkInterface  *PublicNetworkInterfaceInfo `json:"PublicNetworkInterface"`
-	InstanceChargeType      *string                     `json:"InstanceChargeType"`
+	PublicNetworkInterface  []*PublicNetworkInterfaceInfo `json:"PublicNetworkInterface"`
+	InstanceChargeType      *string                       `json:"InstanceChargeType"`
 }
+
 type DisksInfo struct {
 	DataDisks       []*DataDisksInfo `json:"DataDisks"`
 	SystemDisk      *map[string]int  `json:"SystemDisk"`
@@ -104,6 +108,7 @@ type DataDisksInfo struct {
 	Size     *int    `json:"Size"`
 	IopsSize *int    `json:"IopsSize"`
 }
+
 type PrivateNetworkInterfaceInfo struct {
 	InterfaceId *string `json:"InterfaceId"`
 	Name        *string `json:"Name"`
@@ -121,6 +126,7 @@ type PublicNetworkInterfaceInfo struct {
 	Connected   *int    `json:"Connected"`
 	PublicId    *string `json:"PublicId"`
 }
+
 type DescribeInstanceReponse struct {
 	*cdshttp.BaseResponse
 	Code    *string `json:"Code"`
@@ -160,6 +166,69 @@ func (instance *DeleteInstanceResponse) ToJsonString() string {
 }
 
 func (instance *DeleteInstanceResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &instance)
+}
+
+// Modify Instance Name
+type ModifyInstanceNameRequest struct {
+	*cdshttp.BaseRequest
+	InstanceId   *string `json:"InstanceId,omitempty" name:"InstanceId"`
+	InstanceName *string `json:"InstanceName,omitempty" name:"InstanceName"`
+}
+
+func (instance *ModifyInstanceNameRequest) ToJsonString() string {
+	b, _ := json.Marshal(instance)
+	return string(b)
+}
+
+func (instance *ModifyInstanceNameRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &instance)
+}
+
+type ModifyInstanceNameResponse struct {
+	*cdshttp.BaseResponse
+	Code   *string
+	TaskId *string
+}
+
+func (instance *ModifyInstanceNameResponse) ToJsonString() string {
+	b, _ := json.Marshal(instance)
+	return string(b)
+}
+
+func (instance *ModifyInstanceNameResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &instance)
+}
+
+// ModifyInstanceSpec, cpu, ram
+type ModifyInstanceSpecRequest struct {
+	*cdshttp.BaseRequest
+	InstanceId *string `json:"InstanceId,omitempty" name:"InstanceId"`
+	Cpu        *int    `json:"Cpu,omitempty" name:"Cpu"`
+	Ram        *int    `json:"Ram,omitempty" name:"Ram"`
+}
+
+func (instance *ModifyInstanceSpecRequest) ToJsonString() string {
+	b, _ := json.Marshal(instance)
+	return string(b)
+}
+
+func (instance *ModifyInstanceSpecRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &instance)
+}
+
+type ModifyInstanceSpecResponse struct {
+	*cdshttp.BaseResponse
+	Code   *string
+	TaskId *string
+}
+
+func (instance *ModifyInstanceSpecResponse) ToJsonString() string {
+	b, _ := json.Marshal(instance)
+	return string(b)
+}
+
+func (instance *ModifyInstanceSpecResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &instance)
 }
 

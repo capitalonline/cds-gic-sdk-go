@@ -3,6 +3,8 @@ package task
 import (
 	"encoding/json"
 	"errors"
+	"log"
+	"math/rand"
 	"time"
 
 	"github.com/capitalonline/cds-gic-sdk-go/common"
@@ -74,20 +76,29 @@ func NewDescribeTaskResponse() (response *DescribeTaskResponse) {
 	return
 }
 
-// Create Instance
 func (c *Client) DescribeTask(request *DescribeTaskRequest) (response *DescribeTaskResponse, err error) {
 	if request == nil {
 		request = NewDescribeTaskRequest()
 	}
 	response = NewDescribeTaskResponse()
 
-	for i := 0; i < 100; i++ {
+	errRetry, retryCount := 0, 10
+	for i := 0; i < 1000; i++ {
 		err = c.Send(request, response)
 		if err != nil {
+			if errRetry < retryCount {
+				log.Printf("get task status ERROR! Retry %v.\n", errRetry)
+				errRetry++
+				minSleepMs, maxSleepMs := 2000, 10000
+				sleepMs := minSleepMs + rand.Intn(maxSleepMs)
+				time.Sleep(time.Duration(sleepMs) * time.Millisecond)
+				continue
+			}
 			return
 		}
 		switch *response.Data.Status {
 		case "FINISH":
+			log.Printf("get task status FINISH!\n")
 			return
 		case "ERROR":
 			err = errors.New("get task status error")
