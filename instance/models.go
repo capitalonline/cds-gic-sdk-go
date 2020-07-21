@@ -26,6 +26,7 @@ type AddInstanceRequest struct {
 	PublicIp           []*string    `json:"PublicIp,omitempty" name:"PublicIp"`
 	PrivateIp          []*PrivateIp `json:"PrivateIp,omitempty" name:"PrivateIp"`
 	Amount             *int         `json:"Amount,omitempty" name:"Amount"`
+	UTC                *bool        `json:"UTC,omitempty" name:"UTC"`
 }
 
 type DataDisk struct {

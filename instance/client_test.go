@@ -11,34 +11,34 @@ import (
 )
 
 func TestClient_CreateInstance(t *testing.T) {
-	credential := common.NewCredential("", "")
+	ak := ""
+	sk := ""
+	credential := common.NewCredential(ak, sk)
 
 	cpf := profile.NewClientProfile()
 	cpf.HttpProfile.ReqMethod = "POST"
 	client, _ := NewClient(credential, regions.Beijing, cpf)
 
 	request := NewAddInstanceRequest()
-	request.RegionId = common.StringPtr("CN_Beijing_A")
-	request.VdcId = common.StringPtr("vdc id")
-	request.Password = common.StringPtr("password")
-	request.InstanceName = common.StringPtr("name")
+	request.RegionId = common.StringPtr("APAC_Seoul_A")
+	request.VdcId = common.StringPtr("")
+	request.Password = common.StringPtr("")
+	request.InstanceName = common.StringPtr("")
 	request.InstanceChargeType = common.StringPtr("PostPaid")
 	request.AutoRenew = common.IntPtr(0)
-	request.Cpu = common.IntPtr(1)
-	request.Ram = common.IntPtr(1)
-	request.PrepaidMonth = common.IntPtr(1)
-	request.Amount = common.IntPtr(1)
-	//request.AssignCCSId = common.StringPtr()
-	request.ImageId = common.StringPtr("Ubuntu_16.04_64")
+	request.Cpu = common.IntPtr(4)
+	request.Ram = common.IntPtr(8)
+	request.ImageId = common.StringPtr("Centos_7.6_64")
 	request.PublicIp = common.StringPtrs([]string{"auto"})
-	request.InstanceType = common.StringPtr("high_ccs") //7960400
+	request.InstanceType = common.StringPtr("Standard") //7960400
+	request.UTC = common.BoolPtr(false)                 //7960400
 
 	dd1 := DataDisk{
-		Size: common.IntPtr(100),
+		Size: common.IntPtr(200),
 		Type: common.StringPtr("high_disk"),
 	}
 	ip := PrivateIp{
-		PrivateID: common.StringPtr(""),
+		PrivateID: common.StringPtr("09b2e1a6-6db2-11ea-b6bc-d61f1b70218b"),
 		IP:        common.StringPtrs([]string{"auto"}),
 	}
 	request.DataDisks = []*DataDisk{&dd1}
