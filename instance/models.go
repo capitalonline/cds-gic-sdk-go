@@ -20,6 +20,7 @@ type AddInstanceRequest struct {
 	InstanceType       *string      `json:"InstanceType,omitempty" name:"InstanceType"`
 	ImageId            *string      `json:"ImageId,omitempty" name:"ImageId"`
 	AssignCCSId        *string      `json:"AssignCCSId,omitempty" name:"AssignCCSId"`
+	SystemDisk         *SystemDisk  `json:"SystemDisk,omitempty" name:"SystemDisk"`
 	DataDisks          []*DataDisk  `json:"DataDisks,omitempty" name:"DataDisks"`
 	AutoRenew          *int         `json:"AutoRenew,omitempty" name:"AutoRenew"`
 	PrepaidMonth       *int         `json:"PrepaidMonth,omitempty" name:"PrepaidMonth"`
@@ -27,6 +28,12 @@ type AddInstanceRequest struct {
 	PrivateIp          []*PrivateIp `json:"PrivateIp,omitempty" name:"PrivateIp"`
 	Amount             *int         `json:"Amount,omitempty" name:"Amount"`
 	UTC                *bool        `json:"UTC,omitempty" name:"UTC"`
+}
+
+type SystemDisk struct {
+	Type *string `json:"Type,omitempty" name:"Type" tf:"type"`
+	IOPS *int    `json:"IOPS,omitempty" name:"IOPS" tf:"iops"`
+	Size *int    `json:"Size,omitempty" name:"Size" tf:"size"`
 }
 
 type DataDisk struct {

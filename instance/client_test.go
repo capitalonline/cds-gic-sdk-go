@@ -44,6 +44,12 @@ func TestClient_CreateInstance(t *testing.T) {
 	request.DataDisks = []*DataDisk{&dd1}
 	request.PrivateIp = []*PrivateIp{&ip}
 
+	request.SystemDisk = &SystemDisk{
+		IOPS: common.IntPtr(5),
+		Size: common.IntPtr(200),
+		Type: common.StringPtr("ssd_system_disk"), // or with type "system_disk"
+	}
+
 	response, err := client.CreateInstance(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
 
