@@ -24,6 +24,122 @@ func NewClient(credential *common.Credential, region string, clientProfile *prof
 }
 
 // 获取负载均衡Ha支持的区域
+func (client *Client) DescribeZones(request *DescribeZonesRequest) (*DescribeZonesResponse, error) {
+	if request == nil {
+		request = NewDescribeZonesRequest()
+	}
+	response := NewDescribeZonesResponse()
+	return response, client.Send(request, response)
+}
+
+// 获取某个站点支持的Haproxy产品类型以及规格
+func (client *Client) DescribeLoadBalancersSpec(request *DescribeLoadBalancersSpecRequest) (*DescribeLoadBalancersSpecResponse, error) {
+	if request == nil {
+		request = NewDescribeLoadBalancersSpecRequest()
+	}
+	response := NewDescribeLoadBalancersSpecResponse()
+	return response, client.Send(request, response)
+}
+
+// 创建Ha实例
+func (client *Client) CreateLoadBalancer(request *CreateLoadBalancerRequest) (*CreateLoadBalancerResponse, error) {
+	if request == nil {
+		request = NewCreateLoadBalancerRequest()
+	}
+	response := NewCreateLoadBalancerResponse()
+	return response, client.Send(request, response)
+}
+
+// 获取Ha实例列表
+func (client *Client) DescribeLoadBalancers(request *DescribeLoadBalancersRequest) (*DescribeLoadBalancersResponse, error) {
+	if request == nil {
+		request = NewDescribeLoadBalancersRequest()
+	}
+	response := NewDescribeLoadBalancersResponse()
+	return response, client.Send(request, response)
+}
+
+// 获取实例Ha的配置变更所支持的规格
+func (client *Client) DescribeLoadBalancersModifySpec(request *DescribeLoadBalancersModifySpecRequest) (*DescribeLoadBalancersModifySpecResponse, error) {
+	if request == nil {
+		request = NewDescribeLoadBalancersModifySpecRequest()
+	}
+	response := NewDescribeLoadBalancersModifySpecResponse()
+	return response, client.Send(request, response)
+}
+
+// 修改实例规格
+func (client *Client) ModifyLoadBalancerInstanceSpec(request *ModifyLoadBalancerInstanceSpecRequest) (*ModifyLoadBalancerInstanceSpecResponse, error) {
+	if request == nil {
+		request = NewModifyLoadBalancerInstanceSpecRequest()
+	}
+	response := NewModifyLoadBalancerInstanceSpecResponse()
+	return response, client.Send(request, response)
+}
+
+// 删除Ha实例
+func (client *Client) DeleteLoadBalancer(request *DeleteLoadBalancerRequest) (*DeleteLoadBalancerResponse, error) {
+	if request == nil {
+		request = NewDeleteLoadBalancerRequest()
+	}
+	response := NewDeleteLoadBalancerResponse()
+	return response, client.Send(request, response)
+}
+
+// 获取用户的证书列表
+func (client *Client) DescribeCACertificates(request *DescribeCACertificatesRequest) (*DescribeCACertificatesResponse, error) {
+	if request == nil {
+		request = NewDescribeCACertificatesRequest()
+	}
+	response := NewDescribeCACertificatesResponse()
+	return response, client.Send(request, response)
+}
+
+// 获取用户的证书详
+func (client *Client) DescribeCACertificate(request *DescribeCACertificateRequest) (*DescribeCACertificateResponse, error) {
+	if request == nil {
+		request = NewDescribeCACertificateRequest()
+	}
+	response := NewDescribeCACertificateResponse()
+	return response, client.Send(request, response)
+}
+
+// 删除证书
+func (client *Client) DeleteCACertificate(request *DeleteCACertificateRequest) (*DeleteCACertificateResponse, error) {
+	if request == nil {
+		request = NewDeleteCACertificateRequest()
+	}
+	response := NewDeleteCACertificateResponse()
+	return response, client.Send(request, response)
+}
+
+// 添加证书
+func (client *Client) UploadCACertificate(request *UploadCACertificateRequest) (*UploadCACertificateResponse, error) {
+	if request == nil {
+		request = NewUploadCACertificateRequest()
+	}
+	response := NewUploadCACertificateResponse()
+	return response, client.Send(request, response)
+}
+
+// 获取Ha实例的当前监听的策略配置列表
+func (client *Client) DescribeLoadBalancerStrategys(request *DescribeLoadBalancerStrategysRequest) (*DescribeLoadBalancerStrategysResponse, error) {
+	if request == nil {
+		request = NewDescribeLoadBalancerStrategysRequest()
+	}
+	response := NewDescribeLoadBalancerStrategysResponse()
+	return response, client.Send(request, response)
+}
+
+// 修改（删除、修改、添加）Ha实例的当前监听的策略配置列表
+func (client *Client) ModifyLoadBalancerStrategys(request *ModifyLoadBalancerStrategysRequest) (*ModifyLoadBalancerStrategysResponse, error) {
+	if request == nil {
+		request = NewModifyLoadBalancerStrategysRequest()
+	}
+	response := NewModifyLoadBalancerStrategysResponse()
+	return response, client.Send(request, response)
+}
+
 func NewDescribeZonesRequest() *DescribeZonesRequest {
 	request := &DescribeZonesRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -38,7 +154,6 @@ func NewDescribeZonesResponse() *DescribeZonesResponse {
 	}
 }
 
-// 获取某个站点支持的Haproxy产品类型以及规格
 func NewDescribeLoadBalancersSpecRequest() *DescribeLoadBalancersSpecRequest {
 	request := &DescribeLoadBalancersSpecRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -53,8 +168,7 @@ func NewDescribeLoadBalancersSpecResponse() *DescribeLoadBalancersSpecResponse {
 	}
 }
 
-// 创建Ha实例
-func NewCreateLoadBalancer() *CreateLoadBalancerRequest {
+func NewCreateLoadBalancerRequest() *CreateLoadBalancerRequest {
 	request := &CreateLoadBalancerRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
 	}
@@ -68,7 +182,6 @@ func NewCreateLoadBalancerResponse() *CreateLoadBalancerResponse {
 	}
 }
 
-// 获取Ha实例列表
 func NewDescribeLoadBalancersRequest() *DescribeLoadBalancersRequest {
 	request := &DescribeLoadBalancersRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -83,7 +196,6 @@ func NewDescribeLoadBalancersResponse() *DescribeLoadBalancersResponse {
 	}
 }
 
-// 获取实例Ha的配置变更所支持的规格
 func NewDescribeLoadBalancersModifySpecRequest() *DescribeLoadBalancersModifySpecRequest {
 	request := &DescribeLoadBalancersModifySpecRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -98,7 +210,6 @@ func NewDescribeLoadBalancersModifySpecResponse() *DescribeLoadBalancersModifySp
 	}
 }
 
-// 修改实例规格
 func NewModifyLoadBalancerInstanceSpecRequest() *ModifyLoadBalancerInstanceSpecRequest {
 	request := &ModifyLoadBalancerInstanceSpecRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -113,7 +224,6 @@ func NewModifyLoadBalancerInstanceSpecResponse() *ModifyLoadBalancerInstanceSpec
 	}
 }
 
-// 删除Ha实例
 func NewDeleteLoadBalancerRequest() *DeleteLoadBalancerRequest {
 	request := &DeleteLoadBalancerRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -128,7 +238,6 @@ func NewDeleteLoadBalancerResponse() *DeleteLoadBalancerResponse {
 	}
 }
 
-// 获取用户的证书列表
 func NewDescribeCACertificatesRequest() *DescribeCACertificatesRequest {
 	request := DescribeCACertificatesRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -143,7 +252,6 @@ func NewDescribeCACertificatesResponse() *DescribeCACertificatesResponse {
 	}
 }
 
-// 获取用户的证书详情
 func NewDescribeCACertificateRequest() *DescribeCACertificateRequest {
 	request := &DescribeCACertificateRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -158,7 +266,6 @@ func NewDescribeCACertificateResponse() *DescribeCACertificateResponse {
 	}
 }
 
-// 删除证书
 func NewDeleteCACertificateRequest() *DeleteCACertificateRequest {
 	request := &DeleteCACertificateRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -173,7 +280,6 @@ func NewDeleteCACertificateResponse() *DeleteCACertificateResponse {
 	}
 }
 
-// 添加证书
 func NewUploadCACertificateRequest() *UploadCACertificateRequest {
 	request := &UploadCACertificateRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -188,7 +294,6 @@ func NewUploadCACertificateResponse() *UploadCACertificateResponse {
 	}
 }
 
-// 获取Ha实例的当前监听的策略配置列表
 func NewDescribeLoadBalancerStrategysRequest() *DescribeLoadBalancerStrategysRequest {
 	request := &DescribeLoadBalancerStrategysRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -203,7 +308,6 @@ func NewDescribeLoadBalancerStrategysResponse() *DescribeLoadBalancerStrategysRe
 	}
 }
 
-// 修改（删除、修改、添加）Ha实例的当前监听的策略配置列表
 func NewModifyLoadBalancerStrategysRequest() *ModifyLoadBalancerStrategysRequest {
 	request := &ModifyLoadBalancerStrategysRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
