@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/capitalonline/cds-gic-sdk-go/common"
 	"github.com/capitalonline/cds-gic-sdk-go/common/profile"
