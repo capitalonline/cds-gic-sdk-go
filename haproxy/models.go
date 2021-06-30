@@ -21,9 +21,9 @@ func (request *DescribeZonesRequest) FromJsonString(s string) error {
 
 type DescribeZonesResponse struct {
 	*cdshttp.BaseResponse
-	Code    string              `json:"Code,omitempty" name:"Code"`
-	Data    []DescribeZonesData `json:"Data,omitempty" name:"Data"`
-	Message string              `json:"Message,omitempty" name:"Message"`
+	Code    *string              `json:"Code,omitempty" name:"Code"`
+	Data    []*DescribeZonesData `json:"Data,omitempty" name:"Data"`
+	Message *string              `json:"Message,omitempty" name:"Message"`
 }
 
 type DescribeZonesData struct {
@@ -60,10 +60,10 @@ func (request *DescribeLoadBalancersSpecRequest) FromJsonString(s string) error 
 
 type DescribeLoadBalancersSpecResponse struct {
 	*cdshttp.BaseResponse
-	Code    string                        `json:"Code,omitempty" name:"Code"`
-	Data    DescribeLoadBalancersSpecData `json:"data,omitempty" name:"data"`
-	Message string                        `json:"Message,omitempty" name:"Message"`
-	TaskId  string                        `json:"TaskId,omitempty" name:"TaskId"`
+	Code    *string                        `json:"Code,omitempty" name:"Code"`
+	Data    *DescribeLoadBalancersSpecData `json:"data,omitempty" name:"data"`
+	Message *string                        `json:"Message,omitempty" name:"Message"`
+	TaskId  *string                        `json:"TaskId,omitempty" name:"TaskId"`
 }
 
 func (response *DescribeLoadBalancersSpecResponse) ToJsonString() string {
@@ -89,8 +89,8 @@ type DescribeLoadBalancersSpecProducts struct {
 type DescribeLoadBalancersSpecArchitectures struct {
 	ArchitectureName *string                                  `json:"Architectures,omitempty" name:"Architectures"`
 	ComputeRoles     []*DescribeLoadBalancersSpecComputeRoles `json:"ComputeRoles,omitempty" name:"ComputeRoles"`
-	EnginesType      []*interface{}                           `json:"EnginesType,omitempty" name:"EnginesType"` // UNKNOW TYPE
-	NetworkLinks     *interface{}                             `json:"NetworkLinks,omitempty" name:"NetworkLinks"`
+	EnginesType      []*interface{}                           `json:"EnginesType,omitempty" name:"EnginesType"`   // UNKNOW TYPE
+	NetworkLinks     *interface{}                             `json:"NetworkLinks,omitempty" name:"NetworkLinks"` // UNKNOW TYPE
 	SubProductName   *string                                  `json:"SubProductName,omitempty" name:"SubProductName"`
 }
 
@@ -150,10 +150,10 @@ type CreateLoadBalancerIps struct {
 
 type CreateLoadBalancerResponse struct {
 	*cdshttp.BaseResponse
-	Code    string                 `json:"Code,omitempty" name:"Code"`
-	Data    map[string]interface{} `json:"Data,omitempty" name:"Data"` //UNKNOW TYPE
-	Message string                 `json:"Message,omitempty" name:"Message"`
-	TaskId  string                 `json:"TaskId,omitempty" name:"TaskId"`
+	Code    *string                 `json:"Code,omitempty" name:"Code"`
+	Data    *map[string]interface{} `json:"Data,omitempty" name:"Data"` //UNKNOW TYPE
+	Message *string                 `json:"Message,omitempty" name:"Message"`
+	TaskId  *string                 `json:"TaskId,omitempty" name:"TaskId"`
 }
 
 func (response *CreateLoadBalancerResponse) ToJsonString() string {
@@ -185,9 +185,9 @@ func (request *DescribeLoadBalancersRequest) FromJsonString(s string) error {
 
 type DescribeLoadBalancersResponse struct {
 	*cdshttp.BaseResponse
-	Code    string                      `json:"Code,omitempty" name:"Code"`
-	Data    []DescribeLoadBalancersData `json:"Data,omitempty" name:"Data"`
-	Message string                      `json:"Message,omitempty" name:"Message"`
+	Code    *string                      `json:"Code,omitempty" name:"Code"`
+	Data    []*DescribeLoadBalancersData `json:"Data,omitempty" name:"Data"`
+	Message *string                      `json:"Message,omitempty" name:"Message"`
 }
 
 func (response *DescribeLoadBalancersResponse) ToJsonString() string {
@@ -246,10 +246,10 @@ func (request *DescribeLoadBalancersModifySpecRequest) FromJsonString(s string) 
 
 type DescribeLoadBalancersModifySpecResponse struct {
 	*cdshttp.BaseResponse
-	Code    string                              `json:"Code,omitempty" name:"Code"`
-	Data    DescribeLoadBalancersModifySpecData `json:"Data,omitempty" name:"Data"`
-	Message string                              `json:"Message,omitempty" name:"Message"`
-	TaskId  string                              `json:"TaskId,omitempty" name:"TaskId"`
+	Code    *string                              `json:"Code,omitempty" name:"Code"`
+	Data    *DescribeLoadBalancersModifySpecData `json:"Data,omitempty" name:"Data"`
+	Message *string                              `json:"Message,omitempty" name:"Message"`
+	TaskId  *string                              `json:"TaskId,omitempty" name:"TaskId"`
 }
 
 func (response *DescribeLoadBalancersModifySpecResponse) ToJsonString() string {
@@ -303,10 +303,10 @@ func (request *ModifyLoadBalancerInstanceSpecRequest) FromJsonString(s string) e
 
 type ModifyLoadBalancerInstanceSpecResponse struct {
 	*cdshttp.BaseResponse
-	Code    string      `json:"Code,omitempty" name:"Code"`
-	Data    interface{} `json:"Data,omitempty" name:"Data"` // UNKNOW TYPE
-	Message string      `json:"Message,omitempty" name:"Message"`
-	TaskId  string      `json:"TaksId,omitempty" name:"TaksId"`
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"` // UNKNOW TYPE
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	TaskId  *string      `json:"TaksId,omitempty" name:"TaksId"`
 }
 
 func (response *ModifyLoadBalancerInstanceSpecResponse) ToJsonString() string {
@@ -334,10 +334,10 @@ func (request *DeleteLoadBalancerRequest) FromJsonString(s string) error {
 
 type DeleteLoadBalancerResponse struct {
 	*cdshttp.BaseResponse
-	Code    string      `json:"Code,omitempty" name:"Code"`
-	Data    interface{} `json:"Data,omitempty" name:"Data"` // UNKNOW TYPE
-	Message string      `json:"Message,omitempty" name:"Message"`
-	TaskId  string      `json:"TaskId,omitempty" name:"TaskId"`
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"` // UNKNOW TYPE
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	TaskId  *string      `json:"TaskId,omitempty" name:"TaskId"`
 }
 
 func (response *DeleteLoadBalancerResponse) ToJsonString() string {
@@ -364,8 +364,8 @@ func (request *DescribeCACertificatesRequest) FromJsonString(s string) error {
 
 type DescribeCACertificatesResponse struct {
 	*cdshttp.BaseResponse
-	Code string                       `json:"Code,omitempty" name:"Code"`
-	Data []DescribeCACertificatesData `json:"Data,omitempty" name:"Data"`
+	Code *string                       `json:"Code,omitempty" name:"Code"`
+	Data []*DescribeCACertificatesData `json:"Data,omitempty" name:"Data"`
 }
 
 func (response *DescribeCACertificatesResponse) ToJsonString() string {
@@ -405,10 +405,10 @@ func (request *DescribeCACertificateRequest) FromJsonString(s string) error {
 
 type DescribeCACertificateResponse struct {
 	*cdshttp.BaseResponse
-	Code    string                    `json:"Code,omitempty" name:"Code"`
-	Data    DescribeCACertificateData `json:"Data,omitempty" name:"Data"`
-	Message string                    `json:"Message,omitempty" name:"Message"`
-	TaskId  string                    `json:"TaskId,omitempty" name:"TaskId"`
+	Code    *string                    `json:"Code,omitempty" name:"Code"`
+	Data    *DescribeCACertificateData `json:"Data,omitempty" name:"Data"`
+	Message *string                    `json:"Message,omitempty" name:"Message"`
+	TaskId  *string                    `json:"TaskId,omitempty" name:"TaskId"`
 }
 
 func (response *DescribeCACertificateResponse) ToJsonString() string {
@@ -451,10 +451,10 @@ func (request *DeleteCACertificateRequest) FromJsonString(s string) error {
 
 type DeleteCACertificateResponse struct {
 	*cdshttp.BaseResponse
-	Code    string      `json:"Code,omitempty" name:"Code"`
-	Data    interface{} `json:"Data,omitempty" name:"Data"` // UNKNOW TYPE
-	Message string      `json:"Message,omitempty" name:"Message"`
-	TaskId  string      `json:"TaskId,omitempty" name:"TaskId"`
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"` // UNKNOW TYPE
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	TaskId  *string      `json:"TaskId,omitempty" name:"TaskId"`
 }
 
 func (response *DeleteCACertificateResponse) ToJsonString() string {
@@ -484,10 +484,10 @@ func (request *UploadCACertificateRequest) FromJsonString(s string) error {
 
 type UploadCACertificateResponse struct {
 	*cdshttp.BaseResponse
-	Code    string      `json:"Code,omitempty" name:"Code"`
-	Data    interface{} `json:"Data,omitempty" name:"Data"`
-	Message string      `json:"Message,omitempty" name:"Message"`
-	TaskId  string      `json:"TaskId,omitempty" name:"TaskId"`
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"` // UNKNOW TYPE
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	TaskId  *string      `json:"TaskId,omitempty" name:"TaskId"`
 }
 
 func (response *UploadCACertificateResponse) ToJsonString() string {
@@ -515,10 +515,10 @@ func (request *DescribeLoadBalancerStrategysRequest) FromJsonString(s string) er
 
 type DescribeLoadBalancerStrategysResponse struct {
 	*cdshttp.BaseResponse
-	Code    string                            `json:"Code,omitempty" name:"Code"`
-	Data    DescribeLoadBalancerStrategysData `json:"Data,omitempty" name:"Data"`
-	Message string                            `json:"Message,omitempty" name:"Message"`
-	TaskId  string                            `json:"TaskId,omitempty" name:"TaskId"`
+	Code    *string                            `json:"Code,omitempty" name:"Code"`
+	Data    *DescribeLoadBalancerStrategysData `json:"Data,omitempty" name:"Data"`
+	Message *string                            `json:"Message,omitempty" name:"Message"`
+	TaskId  *string                            `json:"TaskId,omitempty" name:"TaskId"`
 }
 
 func (response *DescribeLoadBalancerStrategysResponse) ToJsonString() string {
@@ -599,10 +599,10 @@ func (request *ModifyLoadBalancerStrategysRequest) FromJsonString(s string) erro
 
 type ModifyLoadBalancerStrategysResponse struct {
 	*cdshttp.BaseResponse
-	Code    string      `json:"Code,omitempty" name:"Code"`
-	Data    interface{} `json:"Data,omitempty" name:"Data"` // UNKNOW TYPE
-	Message string      `json:"Message,omitempty" name:"Message"`
-	TaskId  string      `json:"TaskId,omitempty" name:"TaskId"`
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"` // UNKNOW TYPE
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	TaskId  *string      `json:"TaskId,omitempty" name:"TaskId"`
 }
 
 func (response *ModifyLoadBalancerStrategysResponse) ToJsonString() string {
