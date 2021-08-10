@@ -222,6 +222,7 @@ type DescribeLoadBalancersData struct {
 	VdcId           *string                      `json:"VdcId,omitempty" name:"VdcId"`
 	VdcName         *string                      `json:"VdcName,omitempty" name:"VdcName"`
 	Version         *string                      `json:"Version,omitempty" name:"Version"`
+	ProjectName     *string                      `json:"ProjectName" name:"ProjectName"`
 	Vips            []*DescribeLoadBalancersVips `json:"Vips,omitempty" name:"Vips"`
 }
 
