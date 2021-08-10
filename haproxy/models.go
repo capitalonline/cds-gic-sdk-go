@@ -364,8 +364,9 @@ func (request *DescribeCACertificatesRequest) FromJsonString(s string) error {
 
 type DescribeCACertificatesResponse struct {
 	*cdshttp.BaseResponse
-	Code *string                       `json:"Code,omitempty" name:"Code"`
-	Data []*DescribeCACertificatesData `json:"Data,omitempty" name:"Data"`
+	Code    *string                       `json:"Code,omitempty" name:"Code"`
+	Message *string                       `json:"Message,omitempty" name:"Message"`
+	Data    []*DescribeCACertificatesData `json:"Data,omitempty" name:"Data"`
 }
 
 func (response *DescribeCACertificatesResponse) ToJsonString() string {
@@ -430,7 +431,7 @@ type DescribeCACertificateData struct {
 	StartTime       *string `json:"StartTime,omitempty" name:"StartTime"`
 	EndTime         *string `json:"EndTime,omitempty" name:"EndTime"`
 	Organization    *string `json:"Organization,omitempty" name:"Organization"`
-	PirvateKey      *string `json:"PirvateKey,omitempty" name:"PirvateKey"`
+	PrivateKey      *string `json:"PrivateKey,omitempty" name:"PrivateKey"`
 	PublicKey       *string `json:"PublicKey,omitempty" name:"PublicKey"`
 	Valid           *int    `json:"Valid,omitempty" name:"Valid"`
 }
