@@ -170,6 +170,20 @@ func NewAddPublicIpResponse() (response *AddPublicIpResponse) {
 	return
 }
 
+func NewDeletePublicIpRequest() *DeletePublicIpRequest {
+	request := &DeletePublicIpRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("network", ApiVersion, "DeletePublicIp")
+	return request
+}
+
+func NewDeletePublicIpResponse() *DeletePublicIpResponse {
+	return &DeletePublicIpResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+}
+
 func NewRenewPublicNetworkRequest() (request *RenewPublicNetworkRequest) {
 	request = &RenewPublicNetworkRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -274,6 +288,14 @@ func (c *Client) AddPublicIpNetwork(request *AddPublicIpRequest) (response *AddP
 	response = NewAddPublicIpResponse()
 	err = c.Send(request, response)
 	return
+}
+
+func (c *Client) DeletePublicIpNetwork(request *DeletePublicIpRequest) (*DeletePublicIpResponse, error) {
+	if request == nil {
+		request = NewDeletePublicIpRequest()
+	}
+	response := NewDeletePublicIpResponse()
+	return response, c.Send(request, response)
 }
 
 func (c *Client) RenewPublicNetwork(request *RenewPublicNetworkRequest) (response *RenewPublicNetworkResponse, err error) {

@@ -151,9 +151,13 @@ type CreateLoadBalancerIps struct {
 type CreateLoadBalancerResponse struct {
 	*cdshttp.BaseResponse
 	Code    *string                 `json:"Code,omitempty" name:"Code"`
-	Data    *map[string]interface{} `json:"Data,omitempty" name:"Data"` //UNKNOW TYPE
+	Data    *CreateLoadBalancerData `json:"Data,omitempty" name:"Data"`
 	Message *string                 `json:"Message,omitempty" name:"Message"`
 	TaskId  *string                 `json:"TaskId,omitempty" name:"TaskId"`
+}
+
+type CreateLoadBalancerData struct {
+	InstancesUuid []string `json:"InstancesUuid" name:"InstancesUuid"`
 }
 
 func (response *CreateLoadBalancerResponse) ToJsonString() string {
@@ -222,6 +226,7 @@ type DescribeLoadBalancersData struct {
 	VdcId           *string                      `json:"VdcId,omitempty" name:"VdcId"`
 	VdcName         *string                      `json:"VdcName,omitempty" name:"VdcName"`
 	Version         *string                      `json:"Version,omitempty" name:"Version"`
+	ProjectName     *string                      `json:"ProjectName" name:"ProjectName"`
 	Vips            []*DescribeLoadBalancersVips `json:"Vips,omitempty" name:"Vips"`
 }
 
