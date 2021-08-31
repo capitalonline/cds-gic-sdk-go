@@ -21,18 +21,18 @@ func (request *DescribeRegionsRequest) FromJsonString(s string) error {
 
 type DescribeRegionsResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string       `json:"Code"`
-	Message *string       `json:"Message"`
-	Data    []*RegionData `json:"Data"`
+	Code    *string       `json:"Code" name:"Code"`
+	Message *string       `json:"Message" name:"Message"`
+	Data    []*RegionData `json:"Data" name:"Data"`
 }
 
 type RegionData struct {
-	CityId     *string `json:"CityId"`
-	CityName   *string `json:"CityName"`
-	IsSaling   *bool   `json:"IsSaling"`
-	RegionId   *string `json:"RegionId"`
-	RegionName *string `json:"RegionName"`
-	Sitename   *string `json:"SiteName"`
+	CityId     *string `json:"CityId" name:"CityId"`
+	CityName   *string `json:"CityName" name:"CityName"`
+	IsSaling   *int    `json:"IsSaling" name:"IsSaling"`
+	RegionId   *string `json:"RegionId" name:"RegionId"`
+	RegionName *string `json:"RegionName" name:"RegionName"`
+	SiteName   *string `json:"SiteName" name:"SiteName"`
 }
 
 func (response *DescribeRegionsResponse) ToJsonString() string {
@@ -46,7 +46,7 @@ func (response *DescribeRegionsResponse) FromJsonString(s string) error {
 
 type DescribeAvailableDBConfigRequest struct {
 	*cdshttp.BaseRequest
-	RegionId *string `json:"RegionId"`
+	RegionId *string `json:"RegionId" name:"RegionId"`
 }
 
 func (request *DescribeAvailableDBConfigRequest) ToJsonString() string {
@@ -60,61 +60,62 @@ func (request *DescribeAvailableDBConfigRequest) FromJsonString(s string) error 
 
 type DescribeAvailableDBConfigResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string                   `json:"Code"`
-	Message *string                   `json:"Message"`
-	Data    []*AvailableDBConfigEntry `json:"Data"`
+	Code    *string                 `json:"Code" name:"Code"`
+	Message *string                 `json:"Message" name:"Message"`
+	Data    *AvailableDBConfigEntry `json:"Data" name:"Data"`
 }
 
 type AvailableDBConfigEntry struct {
-	ProductName *string                     `json:"ProductName"`
-	RegionId    *string                     `json:"RegionId"`
-	Products    []*AvailableDBConfigProduct `json:"Productrs"`
+	ProductName *string                     `json:"ProductName" name:"ProductName"`
+	RegionId    *string                     `json:"RegionId" name:"RegionId"`
+	Products    []*AvailableDBConfigProduct `json:"Products" name:"Products"`
 }
 
 type AvailableDBConfigProduct struct {
-	Architectures []*AvailableDBConfigArchitecture `json:"Architectures"`
-	Version       *string                          `json:"Version"`
+	Architectures []*AvailableDBConfigArchitecture `json:"Architectures" name:"Architectures"`
+	Version       *string                          `json:"Version" name:"Version"`
 }
 
 type AvailableDBConfigArchitecture struct {
-	ArchitectureName *string                         `json:"ArchitectureName"`
-	ComputeRoles     []*AvailableDBConfigComputeRole `json:"ComputeRole"`
-	EnginesType      []interface{}                   `json:"EnginesType"`
-	NetworkLinks     []*AvailableDBConfigNetworkLink `json:"NetworkLinks"`
-	SubProductName   *string                         `json:"SubProductName"`
+	ArchitectureName *string                         `json:"ArchitectureName" name:"ArchitectureName"`
+	ComputeRoles     []*AvailableDBConfigComputeRole `json:"ComputeRoles" name:"ComputeRoles"`
+	EnginesType      []interface{}                   `json:"EnginesType" name:"EnginesType"`
+	NetworkLinks     []*AvailableDBConfigNetworkLink `json:"NetworkLinks" name:"NetworkLinks"`
+	SubProductName   *string                         `json:"SubProductName" name:"SubProductName"`
 }
 
 type AvailableDBConfigComputeRole struct {
-	ComputeName *string                       `json:"ComputeName"`
-	Standards   []*AvailableDBConfigStandards `json:"Standards"`
+	ComputeName *string                     `json:"ComputeName" name:"ComputeName"`
+	Standards   *AvailableDBConfigStandards `json:"Standards" name:"Standards"`
 }
 
 type AvailableDBConfigStandards struct {
-	AttachDisk []*AvailableDBConfigAttchDisk `json:"AttachDisk"`
+	AttachDisk []*AvailableDBConfigAttchDisk `json:"AttachDisk" name:"AttachDisk"`
+	CpuRam     []*AvailableDBConfigCpuRam    `json:"CpuRam" name:"CpuRam"`
 }
 
 type AvailableDBConfigAttchDisk struct {
-	BasicIops     *string `json:"BasicIops"`
-	DiskMax       *int    `json:"DiskMax"`
-	DiskMaxExpand *int    `json:"DiskMaxExpand"`
-	DiskMin       *int    `json:"DiskMin"`
-	DiskName      *string `json:"DiskName"`
-	DiskStep      *int    `json:"DiskStep"`
-	DiskUnit      *string `json:"DiskUnit"`
-	DiskValue     *string `json:"DiskValue"`
+	BasicIops     *string `json:"BasicIops" name:"BasicIops"`
+	DiskMax       *int    `json:"DiskMax" name:"DiskMax"`
+	DiskMaxExpand *int    `json:"DiskMaxExpand" name:"DiskMaxExpand"`
+	DiskMin       *int    `json:"DiskMin" name:"DiskMin"`
+	DiskName      *string `json:"DiskName" name:"DiskName"`
+	DiskStep      *int    `json:"DiskStep" name:"DiskStep"`
+	DiskUnit      *string `json:"DiskUnit" name:"DiskUnit"`
+	DiskValue     *string `json:"DiskValue" name:"DiskValue"`
 }
 
 type AvailableDBConfigCpuRam struct {
-	CPU         *int    `json:"CPU"`
-	Name        *string `json:"Name"`
-	PaasGoodsId *int    `json:"PaasGoodsId"`
-	RAM         *int    `json:"RAM"`
+	CPU         *int    `json:"CPU" name:"CPU"`
+	Name        *string `json:"Name" name:"Name"`
+	PaasGoodsId *int    `json:"PaasGoodsId" name:"PaasGoodsId"`
+	RAM         *int    `json:"RAM" name:"RAM"`
 }
 
 type AvailableDBConfigNetworkLink struct {
-	DescDetail *string `json:"DescDetail"`
-	LinkType   *string `json:"LinkType"`
-	Name       *string `json:"Name"`
+	DescDetail *string `json:"DescDetail" name:"DescDetail"`
+	LinkType   *string `json:"LinkType" name:"LinkType"`
+	Name       *string `json:"Name" name:"Name"`
 }
 
 func (response *DescribeAvailableDBConfigResponse) ToJsonString() string {
@@ -128,18 +129,18 @@ func (response *DescribeAvailableDBConfigResponse) FromJsonString(s string) erro
 
 type CreateDBInstanceRequest struct {
 	*cdshttp.BaseRequest
-	RegionId     *string `json:"RegionId"`
-	VdcId        *string `json:"VdcId"`
-	BasePipeId   *string `json:"BasePipeId"`
-	InstanceName *string `json:"InstanceName"`
-	PaasGoodsId  *string `json:"PaasGoodsId"`
-	DiskType     *string `json:"DiskType"`
-	DiskValue    *int    `json:"DiskValue"`
-	Password     *string `json:"Password"`
-	Amount       *int    `json:"Amount"`
+	RegionId     *string `json:"RegionId" name:"RegionId"`
+	VdcId        *string `json:"VdcId" name:"VdcId"`
+	BasePipeId   *string `json:"BasePipeId" name:"BasePipeId"`
+	InstanceName *string `json:"InstanceName" name:"InstanceName"`
+	PaasGoodsId  *int    `json:"PaasGoodsId" name:"PaasGoodsId"`
+	DiskType     *string `json:"DiskType" name:"DiskType"`
+	DiskValue    *int    `json:"DiskValue" name:"DiskValue"`
+	Password     *string `json:"Password" name:"Password"`
+	Amount       *int    `json:"Amount" name:"Amount"`
 }
 
-func (request *CreateDBInstanceRequest) ToJSonString() string {
+func (request *CreateDBInstanceRequest) ToJsonString() string {
 	bytes, _ := json.Marshal(request)
 	return string(bytes)
 }
@@ -150,10 +151,14 @@ func (request *CreateDBInstanceRequest) FromJsonString(s string) error {
 
 type CreateDBInstanceResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string      `json:"Code"`
-	Message *string      `json:"Message"`
-	Data    *interface{} `json:"Data"`
-	TaskId  *string      `json:"TaskId"`
+	Code    *string               `json:"Code" name:"Code"`
+	Message *string               `json:"Message" name:"Message"`
+	Data    *CreateDBInstanceData `json:"Data" name:"Data"`
+	TaskId  *string               `json:"TaskId" name:"TaskId"`
+}
+
+type CreateDBInstanceData struct {
+	InstancesUuid []string `json:"InstancesUuid" name:"InstancesUuid"`
 }
 
 func (response *CreateDBInstanceResponse) ToJsonString() string {
@@ -167,12 +172,12 @@ func (response *CreateDBInstanceResponse) FromJsonString(s string) error {
 
 type DescribeDBInstancesRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
-	InstanceName *string `json:"InstanceName"`
-	IP           *string `json:"IP"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
+	InstanceName *string `json:"InstanceName" name:"InstanceName"`
+	IP           *string `json:"IP" name:"IP"`
 }
 
-func (request *DescribeDBInstancesRequest) ToJsonstring() string {
+func (request *DescribeDBInstancesRequest) ToJsonString() string {
 	bytes, _ := json.Marshal(request)
 	return string(bytes)
 }
@@ -183,53 +188,53 @@ func (request *DescribeDBInstancesRequest) FromJsonString(s string) error {
 
 type DescribeDBInstancesResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string                    `json:"Code"`
-	Message *string                    `json:"Message"`
-	Data    []*DescribeDBInstanceEntry `json:"Data"`
-	TaskId  *string                    `json:"TaskId"`
+	Code    *string                    `json:"Code" name:"Code"`
+	Message *string                    `json:"Message" name:"Message"`
+	Data    []*DescribeDBInstanceEntry `json:"Data" name:"Data"`
+	TaskId  *string                    `json:"TaskId" name:"TaskId"`
 }
 
 type DescribeDBInstanceEntry struct {
-	CloneServices   *interface{}         `json:"CloneServices"`
-	Cpu             *int                 `json:"Cpu"`
-	CreatedTime     *string              `json:"CreatedTime"`
-	Disks           *int                 `json:"Disks"`
-	DisplayName     *string              `json:"DisplayName"`
-	IP              *string              `json:"IP"`
-	InstanceName    *string              `json:"InstanceName"`
-	InstanceUuid    *string              `json:"InstanceUuid"`
-	LinkType        *string              `json:"LinkType"`
-	LinkTypeStr     *string              `json:"LinkTypeStr"`
-	MasterInfo      *string              `json:"MasterInfo"`
-	Port            *int                 `json:"Port"`
-	Ram             *int                 `json:"Ram"`
-	RegionId        *string              `json:"RegionId"`
-	RelationService interface{}          `json:"RelationService"`
-	ResourceId      *string              `json:"ResourceId"`
-	RoGroups        []*DBInstanceRoGroup `json:"RoGroups"`
-	Status          *string              `json:"Status"`
-	StatusStr       *string              `json:"StatusStr"`
-	SubProductName  *string              `json:"SubProductName"`
-	VdcId           *string              `json:"VdcId"`
-	VdcName         *string              `json:"VdcName"`
-	Version         *string              `json:"Version"`
+	CloneServices   *interface{}         `json:"CloneServices" name:"CloneServices"`
+	Cpu             *int                 `json:"Cpu" name:"Cpu"`
+	CreatedTime     *string              `json:"CreatedTime" name:"CreatedTime"`
+	Disks           *int                 `json:"Disks" name:"Disks"`
+	DisplayName     *string              `json:"DisplayName" name:"DisplayName"`
+	IP              *string              `json:"IP" name:"IP"`
+	InstanceName    *string              `json:"InstanceName" name:"InstanceName"`
+	InstanceUuid    *string              `json:"InstanceUuid" name:"InstanceUuid"`
+	LinkType        *string              `json:"LinkType" name:"LinkType"`
+	LinkTypeStr     *string              `json:"LinkTypeStr" name:"LinkTypeStr"`
+	MasterInfo      *string              `json:"MasterInfo" name:"MasterInfo"`
+	Port            *int                 `json:"Port" name:"Port"`
+	Ram             *int                 `json:"Ram" name:"Ram"`
+	RegionId        *string              `json:"RegionId" name:"RegionId"`
+	RelationService interface{}          `json:"RelationService" name:"RelationService"`
+	ResourceId      *string              `json:"ResourceId" name:"ResourceId"`
+	RoGroups        []*DBInstanceRoGroup `json:"RoGroups" name:"RoGroups"`
+	Status          *string              `json:"Status" name:"Status"`
+	StatusStr       *string              `json:"StatusStr" name:"StatusStr"`
+	SubProductName  *string              `json:"SubProductName" name:"SubProductName"`
+	VdcId           *string              `json:"VdcId" name:"VdcId"`
+	VdcName         *string              `json:"VdcName" name:"VdcName"`
+	Version         *string              `json:"Version" name:"Version"`
 }
 
 type DBInstanceRoGroup struct {
-	Cpu         *int    `json:"Cpu"`
-	CreateTime  *string `json:"CreateTime"`
-	InpaasId    *string `json:"InpaasId"`
-	Ip          *string `json:"Ip"`
-	Locked      *string `json:"Locked"`
-	Message     *string `json:"Message"`
-	Port        *int    `json:"Port"`
-	Progress    *int    `json:"Progress"`
-	Ram         *int    `json:"Ram"`
-	ServiceId   *string `json:"ServiceId"`
-	ResourceId  *string `json:"ResourceId"`
-	ServiceName *string `json:"ServiceName"`
-	Status      *string `json:"Status"`
-	SvcType     *string `json:"SvcType"`
+	Cpu         *int    `json:"Cpu" name:"Cpu"`
+	CreateTime  *string `json:"CreateTime" name:"CreateTime"`
+	InpaasId    *string `json:"InpaasId" name:"InpaasId"`
+	Ip          *string `json:"Ip" name:"Ip"`
+	Locked      *string `json:"Locked" name:"Locked"`
+	Message     *string `json:"Message" name:"Message"`
+	Port        *int    `json:"Port" name:"Port"`
+	Progress    *int    `json:"Progress" name:"Progress"`
+	Ram         *int    `json:"Ram" name:"Ram"`
+	ServiceId   *string `json:"ServiceId" name:"ServiceId"`
+	ResourceId  *string `json:"ResourceId" name:"ResourceId"`
+	ServiceName *string `json:"ServiceName" name:"ServiceName"`
+	Status      *string `json:"Status" name:"Status"`
+	SvcType     *string `json:"SvcType" name:"SvcType"`
 }
 
 func (response *DescribeDBInstancesResponse) ToJsonString() string {
@@ -243,11 +248,11 @@ func (response *DescribeDBInstancesResponse) FromJsonString(s string) error {
 
 type CreatePrivilegedAccountRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
-	AccountName  *string `json:"AccountName"`
-	Password     *string `json:"Password"`
-	AccountType  *string `json:"AccountType"`
-	Description  *string `json:"Description"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
+	AccountName  *string `json:"AccountName" name:"AccountName"`
+	Password     *string `json:"Password" name:"Password"`
+	AccountType  *string `json:"AccountType" name:"AccountType"`
+	Description  *string `json:"Description" name:"Description"`
 }
 
 func (request *CreatePrivilegedAccountRequest) ToJsonSting() string {
@@ -261,10 +266,10 @@ func (request *CreatePrivilegedAccountRequest) FromJsonString(s string) error {
 
 type CreatePrivilegedAccountResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string     `json:"Code"`
-	Message *string     `json:"Message"`
-	Data    interface{} `json:"Data"`
-	TaskId  *string     `json:"TaskId"`
+	Code    *string     `json:"Code" name:"Code"`
+	Message *string     `json:"Message" name:"Message"`
+	Data    interface{} `json:"Data" name:"Data"`
+	TaskId  *string     `json:"TaskId" name:"TaskId"`
 }
 
 func (response *CreatePrivilegedAccountResponse) ToJsonString() string {
@@ -278,7 +283,7 @@ func (response *CreatePrivilegedAccountResponse) FromJsonString(s string) error 
 
 type DescribeModifiableDBSpecRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
 }
 
 func (request *DescribeModifiableDBSpecRequest) ToJsonString() string {
@@ -292,35 +297,35 @@ func (request *DescribeModifiableDBSpecRequest) FromJsonString(s string) error {
 
 type DescribeModifiableDBSpecResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string           `json:"Code"`
-	Message *string           `json:"Message"`
-	Data    *ModifiableDBSpec `json:"Data"`
-	TaskId  *string           `json:"TaskId"`
+	Code    *string           `json:"Code" name:"Code"`
+	Message *string           `json:"Message" name:"Message"`
+	Data    *ModifiableDBSpec `json:"Data" name:"Data"`
+	TaskId  *string           `json:"TaskId" name:"TaskId"`
 }
 
 type ModifiableDBSpec struct {
-	AttachDisk  []*ModifiableDBSpecAttachDisk `json:"AttachDisk"`
-	CpuRam      []*ModifiableDBSpecCpuRam     `json:"CpuRam"`
-	ProductName *string                       `json:"ProductName"`
-	RegionId    *string                       `json:"RegionId"`
+	AttachDisk  []*ModifiableDBSpecAttachDisk `json:"AttachDisk" name:"AttachDisk"`
+	CpuRam      []*ModifiableDBSpecCpuRam     `json:"CpuRam" name:"CpuRam"`
+	ProductName *string                       `json:"ProductName" name:"ProductName"`
+	RegionId    *string                       `json:"RegionId" name:"RegionId"`
 }
 
 type ModifiableDBSpecAttachDisk struct {
-	BasicIops     *string `json:"BasicIops"`
-	DiskMax       *int    `json:"DiskMax"`
-	DiskMaxExpand *int    `json:"DiskMaxExpand"`
-	DiskMin       *int    `json:"DiskMin"`
-	DiskName      *string `json:"DiskName"`
-	DiskStep      *int    `json:"DiskStep"`
-	DiskUnit      *string `json:"DiskUnit"`
-	DiskValue     *string `json:"DiskValue"`
+	BasicIops     *string `json:"BasicIops" name:"BasicIops"`
+	DiskMax       *int    `json:"DiskMax" name:"DiskMax"`
+	DiskMaxExpand *int    `json:"DiskMaxExpand" name:"DiskMaxExpand"`
+	DiskMin       *int    `json:"DiskMin" name:"DiskMin"`
+	DiskName      *string `json:"DiskName" name:"DiskName"`
+	DiskStep      *int    `json:"DiskStep" name:"DiskStep"`
+	DiskUnit      *string `json:"DiskUnit" name:"DiskUnit"`
+	DiskValue     *string `json:"DiskValue" name:"DiskValue"`
 }
 
 type ModifiableDBSpecCpuRam struct {
-	CPU         *int    `json:"CPU"`
-	N           *string `json:"N"`
-	PaasGoodsId *int    `json:"PaasGoodsId"`
-	RAM         *int    `json:"RAM"`
+	CPU         *int    `json:"CPU" name:"CPU"`
+	N           *string `json:"N" name:"N"`
+	PaasGoodsId *int    `json:"PaasGoodsId" name:"PaasGoodsId"`
+	RAM         *int    `json:"RAM" name:"RAM"`
 }
 
 func (response *DescribeModifiableDBSpecResponse) ToJsonString() string {
@@ -334,10 +339,10 @@ func (response *DescribeModifiableDBSpecResponse) FromJsonString(s string) error
 
 type ModifyDBInstanceSpecRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
-	PaasGoodsId  *int    `json:"PaasGoodsId"`
-	DiskType     *string `json:"DiskType"`
-	DiskValue    *string `json:"DiskValue"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
+	PaasGoodsId  *int    `json:"PaasGoodsId" name:"PaasGoodsId"`
+	DiskType     *string `json:"DiskType" name:"DiskType"`
+	DiskValue    *int    `json:"DiskValue" name:"DiskValue"`
 }
 
 func (request *ModifyDBInstanceSpecRequest) ToJsonString() string {
@@ -351,10 +356,10 @@ func (request *ModifyDBInstanceSpecRequest) FromJsonString(s string) error {
 
 type ModifyDBInstanceSpecResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string     `json:"Code"`
-	Message *string     `json:"Message"`
-	Data    interface{} `json:"Data"`
-	TaskId  *string     `json:"TaskId"`
+	Code    *string     `json:"Code" name:"Code"`
+	Message *string     `json:"Message" name:"Message"`
+	Data    interface{} `json:"Data" name:"Data"`
+	TaskId  *string     `json:"TaskId" name:"TaskId"`
 }
 
 func (response *ModifyDBInstanceSpecResponse) ToJsonString() string {
@@ -368,7 +373,7 @@ func (response *ModifyDBInstanceSpecResponse) FromJsonString(s string) error {
 
 type DeleteDBInstanceRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
 }
 
 func (request *DeleteDBInstanceRequest) ToJsonString() string {
@@ -382,10 +387,10 @@ func (request *DeleteDBInstanceRequest) FromJsonString(s string) error {
 
 type DeleteDBInstanceResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string     `json:"Code"`
-	Message *string     `json:"Message"`
-	Data    interface{} `json:"Data"`
-	TaskId  *string     `json:"TaskId"`
+	Code    *string     `json:"Code" name:"Code"`
+	Message *string     `json:"Message" name:"Message"`
+	Data    interface{} `json:"Data" name:"Data"`
+	TaskId  *string     `json:"TaskId" name:"TaskId"`
 }
 
 func (response *DeleteDBInstanceResponse) ToJsonString() string {
@@ -399,7 +404,7 @@ func (response *DeleteDBInstanceResponse) FromJsonString(s string) error {
 
 type DescribeAvailableReadOnlyConfigRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
 }
 
 func (request *DescribeAvailableReadOnlyConfigRequest) ToJsonString() string {
@@ -413,17 +418,17 @@ func (request *DescribeAvailableReadOnlyConfigRequest) FromJsonString(s string) 
 
 type DescribeAvailableReadOnlyConfigResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string                `json:"Code"`
-	Message *string                `json:"Message"`
-	Data    *AvailableDBConfigData `json:"Data"`
-	TaskId  *string                `json:"TaskId"`
+	Code    *string                `json:"Code" name:"Code"`
+	Message *string                `json:"Message" name:"Message"`
+	Data    *AvailableDBConfigData `json:"Data" name:"Data"`
+	TaskId  *string                `json:"TaskId" name:"TaskId"`
 }
 
 type AvailableDBConfigData struct {
-	AttachDisk  []*AvailableDBConfigAttchDisk `json:"AttachDisk"`
-	CpuRam      []*AvailableDBConfigCpuRam    `json:"CpuRam"`
-	ProductName *string                       `json:"ProductName"`
-	RegionId    *string                       `json:"RegionId"`
+	AttachDisk  []*AvailableDBConfigAttchDisk `json:"AttachDisk" name:"AttachDisk"`
+	CpuRam      []*AvailableDBConfigCpuRam    `json:"CpuRam" name:"CpuRam"`
+	ProductName *string                       `json:"ProductName" name:"ProductName"`
+	RegionId    *string                       `json:"RegionId" name:"RegionId"`
 }
 
 func (response *DescribeAvailableReadOnlyConfigResponse) ToJsonString() string {
@@ -437,13 +442,13 @@ func (response *DescribeAvailableReadOnlyConfigResponse) FromJsonString(s string
 
 type CreateReadOnlyDBInstanceRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
-	InstanceName *string `json:"InstanceName"`
-	PaasGoodsId  *int    `json:"PaasGoodsId"`
-	DiskType     *string `json:"DiskType"`
-	DiskValue    *int    `json:"DiskValue"`
-	TestGroupId  *int    `json:"TestGroupId"`
-	Amount       *int    `json:"Amount"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
+	InstanceName *string `json:"InstanceName" name:"InstanceName"`
+	PaasGoodsId  *int    `json:"PaasGoodsId" name:"PaasGoodsId"`
+	DiskType     *string `json:"DiskType" name:"DiskType"`
+	DiskValue    *int    `json:"DiskValue" name:"DiskValue"`
+	TestGroupId  *int    `json:"TestGroupId" name:"TestGroupId"`
+	Amount       *int    `json:"Amount" name:"Amount"`
 }
 
 func (request *CreateReadOnlyDBInstanceRequest) ToJsonString() string {
@@ -457,13 +462,13 @@ func (request *CreateReadOnlyDBInstanceRequest) FromJsonString(s string) error {
 
 type CreateReadOnlyDBInstanceResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string     `json:"Code"`
-	Message *string     `json:"Message"`
-	Data    interface{} `json:"Data"`
-	TaskId  *string     `json:"TaskId"`
+	Code    *string     `json:"Code" name:"Code"`
+	Message *string     `json:"Message" name:"Message"`
+	Data    interface{} `json:"Data" name:"Data"`
+	TaskId  *string     `json:"TaskId" name:"TaskId"`
 }
 
-func (response *CreateReadOnlyDBInstanceResponse) ToJSonString() string {
+func (response *CreateReadOnlyDBInstanceResponse) ToJsonString() string {
 	bytes, _ := json.Marshal(response)
 	return string(bytes)
 }
@@ -474,9 +479,9 @@ func (response *CreateReadOnlyDBInstanceResponse) FromJsonString(s string) error
 
 type CreateBackupRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
-	BackupType   *string `json:"BackupType"`
-	Desc         *string `json:"Desc"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
+	BackupType   *string `json:"BackupType" name:"BackupType"`
+	Desc         *string `json:"Desc" name:"Desc"`
 }
 
 func (request *CreateBackupRequest) ToJsonString() string {
@@ -490,10 +495,10 @@ func (request *CreateBackupRequest) FromJsonString(s string) error {
 
 type CreateBackupResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string     `json:"Code"`
-	Message *string     `json:"Message"`
-	Data    interface{} `json:"Data"`
-	TaskId  *string     `json:"TaskId"`
+	Code    *string     `json:"Code" name:"Code"`
+	Message *string     `json:"Message" name:"Message"`
+	Data    interface{} `json:"Data" name:"Data"`
+	TaskId  *string     `json:"TaskId" name:"TaskId"`
 }
 
 func (response *CreateBackupResponse) ToJsonString() string {
@@ -507,7 +512,7 @@ func (response *CreateBackupResponse) FromJsonString(s string) error {
 
 type DescribeBackupsRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
 }
 
 func (request *DescribeBackupsRequest) ToJsonString() string {
@@ -521,22 +526,22 @@ func (request *DescribeBackupsRequest) FromJsonString(s string) error {
 
 type DescribeBackupsResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string       `json:"Code"`
-	Message *string       `json:"Message"`
-	Data    []*BackupData `json:"Data"`
-	TaskId  *string       `json:"TaskId"`
+	Code    *string       `json:"Code" name:"Code"`
+	Message *string       `json:"Message" name:"Message"`
+	Data    []*BackupData `json:"Data" name:"Data"`
+	TaskId  *string       `json:"TaskId" name:"TaskId"`
 }
 
 type BackupData struct {
-	BackupId   *string `json:"BackupId"`
-	BackupMode *string `json:"BackupMode"`
-	BackupSize *int    `json:"BackupSize"`
-	BackupType *string `json:"BackupType"`
-	Desc       *string `json:"Desc"`
-	StartTime  *string `json:"StartTime"`
-	EndTime    *string `json:"EndTime"`
-	InstanceId *string `json:"InstanceId"`
-	Status     *string `json:"Status"`
+	BackupId   *string `json:"BackupId" name:"BackupId"`
+	BackupMode *string `json:"BackupMode" name:"BackupMode"`
+	BackupSize *int    `json:"BackupSize" name:"BackupSize"`
+	BackupType *string `json:"BackupType" name:"BackupType"`
+	Desc       *string `json:"Desc" name:"Desc"`
+	StartTime  *string `json:"StartTime" name:"StartTime"`
+	EndTime    *string `json:"EndTime" name:"EndTime`
+	InstanceId *string `json:"InstanceId" name:"InstanceId"`
+	Status     *string `json:"Status" name:"Status"`
 }
 
 func (response *DescribeBackupsResponse) ToJsonString() string {
@@ -550,8 +555,8 @@ func (response *DescribeBackupsResponse) FromJsonString(s string) error {
 
 type DeleteBackupRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
-	BackupId     *string `json:"BackupId"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
+	BackupId     *string `json:"BackupId" name:"BackupId"`
 }
 
 func (request *DeleteBackupRequest) ToJsonString() string {
@@ -565,10 +570,10 @@ func (request *DeleteBackupRequest) FromJsonString(s string) error {
 
 type DeleteBackupResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string     `json:"Code"`
-	Message *string     `json:"Message"`
-	Data    interface{} `json:"Data"`
-	TaskId  *string     `json:"TaskId"`
+	Code    *string     `json:"Code" name:"Code"`
+	Message *string     `json:"Message" name:"Message"`
+	Data    interface{} `json:"Data" name:"Data"`
+	TaskId  *string     `json:"TaskId" name:"TaskId"`
 }
 
 func (response *DeleteBackupResponse) ToJsonString() string {
@@ -582,8 +587,8 @@ func (response *DeleteBackupResponse) FromJsonString(s string) error {
 
 type DownloadBackupRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
-	BackupId     *string `json:"BackupId"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
+	BackupId     *string `json:"BackupId" name:"BackupId"`
 }
 
 func (request *DownloadBackupRequest) ToJsonString() string {
@@ -597,20 +602,20 @@ func (request *DownloadBackupRequest) FromJsonString(s string) error {
 
 type DownloadBackupResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string `json:"Code"`
-	Message *string `json:"Message"`
+	Code    *string `json:"Code" name:"Code"`
+	Message *string `json:"Message" name:"Message"`
 	Data    *struct {
-		BackupDownloadUrl         *string `json:"BackupDownloadUrl"`
-		BackupIntranetDownloadUrl *string `json:"BackupIntranetDownloadUrl"`
-		BackupMode                *string `json:"BackupMode"`
-		BackupSize                *int    `json:"BackupSize"`
-		BackupType                *string `json:"BackupType"`
-		Desc                      *string `json:"Desc"`
-		StartTime                 *string `json:"StartTime"`
-		EndTIme                   *string `json:"EndTime"`
-		InstanceId                *string `json:"InstanceId"`
-		Status                    *string `json:"Status"`
-	} `json:"Data"`
+		BackupDownloadUrl         *string `json:"BackupDownloadUrl" name:"BackupDownloadUrl"`
+		BackupIntranetDownloadUrl *string `json:"BackupIntranetDownloadUrl" name:"BackupIntranetDownloadUrl"`
+		BackupMode                *string `json:"BackupMode" name:"BackupMode"`
+		BackupSize                *int    `json:"BackupSize" name:"BackupSize"`
+		BackupType                *string `json:"BackupType" name:"BackupType"`
+		Desc                      *string `json:"Desc" name:"Desc"`
+		StartTime                 *string `json:"StartTime" name:"StartTime"`
+		EndTIme                   *string `json:"EndTime" name:"EndTime"`
+		InstanceId                *string `json:"InstanceId" name:"InstanceId"`
+		Status                    *string `json:"Status" name:"Status"`
+	} `json:"Data" name:"Data"`
 }
 
 func (response *DownloadBackupResponse) ToJsonString() string {
@@ -624,8 +629,8 @@ func (response *DownloadBackupResponse) FromJsonString(s string) error {
 
 type StartBatchRollbackRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
-	BackupId     *string `json:"BackupId"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
+	BackupId     *string `json:"BackupId" name:"BackupId"`
 }
 
 func (request *StartBatchRollbackRequest) ToJsonString() string {
@@ -639,10 +644,10 @@ func (request *StartBatchRollbackRequest) FromJsonString(s string) error {
 
 type StartBatchRollbackResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string     `json:"Code"`
-	Message *string     `json:"Message"`
-	Data    interface{} `json:"Data"`
-	TaskId  *string     `json:"TaskId"`
+	Code    *string     `json:"Code" name::"Code"`
+	Message *string     `json:"Message" name:"Message"`
+	Data    interface{} `json:"Data" name:"Data"`
+	TaskId  *string     `json:"TaskId" name:"TaskId"`
 }
 
 func (response *StartBatchRollbackResponse) ToJsonString() string {
@@ -656,7 +661,7 @@ func (response *StartBatchRollbackResponse) FromJsonString(s string) error {
 
 type DescribeRollbackRangeTimeRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
 }
 
 func (request *DescribeRollbackRangeTimeRequest) ToJsonString() string {
@@ -670,13 +675,13 @@ func (request *DescribeRollbackRangeTimeRequest) FromJsonString(s string) error 
 
 type DescribeRollbackRangeTimeResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string `json:"Code"`
-	Message *string `json:"Message"`
+	Code    *string `json:"Code" name:"Code"`
+	Message *string `json:"Message" name:"Message"`
 	Data    *struct {
-		LeftBorderTime  *string `json:"LeftBorderTime"`
-		RightBorderTime *string `json:"RightBorderTime"`
-	} `json:"Data"`
-	TaskId *string `json:"TaskId"`
+		LeftBorderTime  *string `json:"LeftBorderTime" name:"LeftBorderTime"`
+		RightBorderTime *string `json:"RightBorderTime" name:"RightBorderTime"`
+	} `json:"Data" name:"Data"`
+	TaskId *string `json:"TaskId" name:"TaskId"`
 }
 
 func (response *DescribeRollbackRangeTimeResponse) ToJsonString() string {
@@ -690,9 +695,9 @@ func (response *DescribeRollbackRangeTimeResponse) FromJsonString(s string) erro
 
 type StartBatchRollbackToTemporaryDBInstanceRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid          *string `json:"InstanceUuid"`
-	SelectTime            *string `json:"SelectTime"`
-	TemporaryInstanceName *string `json:"TemporaryInstanceName"`
+	InstanceUuid          *string `json:"InstanceUuid" name:"InstanceUuid"`
+	SelectTime            *string `json:"SelectTime" name:"SelectTime"`
+	TemporaryInstanceName *string `json:"TemporaryInstanceName" name:"TemporaryInstanceName"`
 }
 
 func (request *StartBatchRollbackToTemporaryDBInstanceRequest) ToJsonString() string {
@@ -706,10 +711,10 @@ func (request *StartBatchRollbackToTemporaryDBInstanceRequest) FromJsonString(s 
 
 type StartBatchRollbackToTemporaryDBInstanceResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string     `json:"Code"`
-	Message *string     `json:"Message"`
-	Data    interface{} `json:"Data"`
-	TaskId  *string     `json:"TaskId"`
+	Code    *string     `json:"Code" name:"Code"`
+	Message *string     `json:"Message" name:"Message"`
+	Data    interface{} `json:"Data" name:"Data"`
+	TaskId  *string     `json:"TaskId" name:"TaskId"`
 }
 
 func (response *StartBatchRollbackToTemporaryDBInstanceResponse) ToJsonString() string {
@@ -723,7 +728,7 @@ func (response *StartBatchRollbackToTemporaryDBInstanceResponse) FromJsonString(
 
 type DescribeTemporaryDBInstancesRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
 }
 
 func (request *DescribeTemporaryDBInstancesRequest) ToJsonString() string {
@@ -737,19 +742,19 @@ func (request *DescribeTemporaryDBInstancesRequest) FromJsonString(s string) err
 
 type DescribeTemporaryDBInstancesResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string `json:"Code"`
-	Message *string `json:"Message"`
+	Code    *string `json:"Code" name:"Code"`
+	Message *string `json:"Message" name:"Message"`
 	Data    []*struct {
-		CreateTime            *string `json:"CreateTime"`
-		Ip                    *string `json:"Ip"`
-		Port                  *int    `json:"Port"`
-		SelectRecoveryTime    *string `json:"SelectRecoveryTime"`
-		Status                *string `json:"Status"`
-		StatusStr             *string `json:"StatusStr"`
-		TemporaryInstanceName *string `json:"TemporaryInstanceName"`
-		TemporaryInstanceUuid *string `json:"TemporaryInstanceUuid"`
-	} `json:"Data"`
-	TaskId *string `json:"TaskId"`
+		CreateTime            *string `json:"CreateTime" name:"CreateTime"`
+		Ip                    *string `json:"Ip" name:"Ip"`
+		Port                  *int    `json:"Port" name:"Port"`
+		SelectRecoveryTime    *string `json:"SelectRecoveryTime" name:"SelectRecoveryTime"`
+		Status                *string `json:"Status" name:"Status"`
+		StatusStr             *string `json:"StatusStr" name:"StatusStr"`
+		TemporaryInstanceName *string `json:"TemporaryInstanceName" name:"TemporaryInstanceName"`
+		TemporaryInstanceUuid *string `json:"TemporaryInstanceUuid" name:"TemporaryInstanceUuid"`
+	} `json:"Data" name:"Data"`
+	TaskId *string `json:"TaskId" name:"TaskId"`
 }
 
 func (response *DescribeTemporaryDBInstancesResponse) ToJsonString() string {
@@ -763,8 +768,8 @@ func (response *DescribeTemporaryDBInstancesResponse) FromJsonString(s string) e
 
 type RegularizeTemporaryDBInstancesRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid          *string `json:"InstanceUuid"`
-	TemporaryInstanceUuid *string `json:"TemporaryInstanceUuid"`
+	InstanceUuid          *string `json:"InstanceUuid" name:"InstanceUuid"`
+	TemporaryInstanceUuid *string `json:"TemporaryInstanceUuid" name:"TemporaryInstanceUuid"`
 }
 
 func (request *RegularizeTemporaryDBInstancesRequest) ToJsonString() string {
@@ -778,10 +783,10 @@ func (request *RegularizeTemporaryDBInstancesRequest) FromJsonString(s string) e
 
 type RegularizeTemporaryDBInstancesResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string     `json:"Code"`
-	Message *string     `json:"Message"`
-	Data    interface{} `json:"Data"`
-	TaskId  *string     `json:"TaskId"`
+	Code    *string     `json:"Code" name:"Code"`
+	Message *string     `json:"Message" name:"Message"`
+	Data    interface{} `json:"Data" name:"Data"`
+	TaskId  *string     `json:"TaskId" name:"TaskId"`
 }
 
 func (response *RegularizeTemporaryDBInstancesResponse) ToJsonString() string {
@@ -795,8 +800,8 @@ func (response *RegularizeTemporaryDBInstancesResponse) FromJsonString(s string)
 
 type DeleteTemporaryDBInstancesRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid          *string `json:"InstanceUuid"`
-	TemporaryInstanceUuid *string `json:"TemporaryInstanceUuid"`
+	InstanceUuid          *string `json:"InstanceUuid" name:"InstanceUuid"`
+	TemporaryInstanceUuid *string `json:"TemporaryInstanceUuid" name:"TemporaryInstanceUuid"`
 }
 
 func (request *DeleteTemporaryDBInstancesRequest) ToJsonString() string {
@@ -810,10 +815,10 @@ func (request *DeleteTemporaryDBInstancesRequest) FromJsonString(s string) error
 
 type DeleteTemporaryDBInstancesResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string     `json:"Code"`
-	Message *string     `json:"Message"`
-	Data    interface{} `json:"Data"`
-	TaskId  *string     `json:"TaskId"`
+	Code    *string     `json:"Code" name:"Code"`
+	Message *string     `json:"Message" name:"Message"`
+	Data    interface{} `json:"Data" name:"Data"`
+	TaskId  *string     `json:"TaskId" name:"TaskId"`
 }
 
 func (response *DeleteTemporaryDBInstancesResponse) ToJsonString() string {
@@ -827,10 +832,10 @@ func (response *DeleteTemporaryDBInstancesResponse) FromJsonString(s string) err
 
 type DescribeDBInstancePerformanceRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid"`
-	MetricKey    *string `json:"MetricKey"`
-	StartTime    *string `json:"StartTime"`
-	EndTime      *string `json:"EndTime"`
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
+	MetricKey    *string `json:"MetricKey" name:"MetricKey"`
+	StartTime    *string `json:"StartTime" name:"StartTime"`
+	EndTime      *string `json:"EndTime" name:"EndTime"`
 }
 
 func (request *DescribeDBInstancePerformanceRequest) ToJsonString() string {
@@ -844,33 +849,33 @@ func (request *DescribeDBInstancePerformanceRequest) FromJsonString(s string) er
 
 type DescribeDBInstancePerformanceResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string                    `json:"Code"`
-	Message *string                    `json:"Message"`
-	Data    *DBInstancePerformanceData `json:"Data"`
-	TaskId  *string                    `json:"TaskId"`
+	Code    *string                    `json:"Code" name:"Code"`
+	Message *string                    `json:"Message" name:"Message"`
+	Data    *DBInstancePerformanceData `json:"Data" name:"Data"`
+	TaskId  *string                    `json:"TaskId" name:"TaskId"`
 }
 
 type DBInstancePerformanceData struct {
-	DataPoints   []*DBInstancePerformanceDataPoint `json:"DataPoints"`
-	StartTime    *string                           `json:"StartTime"`
-	EndTime      *string                           `json:"EndTime"`
-	InstanceUuid *string                           `json:"InstanceUuid"`
-	MetricKey    *string                           `json:"MetricKey"`
-	Period       *int                              `json:"Period"`
-	ProductType  *string                           `json:"ProductType"`
+	DataPoints   []*DBInstancePerformanceDataPoint `json:"DataPoints" name:"DataPoints"`
+	StartTime    *string                           `json:"StartTime" name:"StartTime"`
+	EndTime      *string                           `json:"EndTime" name:"EndTime"`
+	InstanceUuid *string                           `json:"InstanceUuid" name:"InstanceUuid"`
+	MetricKey    *string                           `json:"MetricKey" name:"MetricKey"`
+	Period       *int                              `json:"Period" name:"Period"`
+	ProductType  *string                           `json:"ProductType" name:"ProductType"`
 }
 
 type DBInstancePerformanceDataPoint struct {
-	MetricName  *string                       `json:"MetricName"`
-	MetricType  *string                       `json:"MetricType"`
-	MonitorType *string                       `json:"MonitorType"`
-	Unit        *string                       `json:"Unit"`
-	Values      []*DBInstancePerformanceValue `json:"Values"`
+	MetricName  *string                       `json:"MetricName" name:"MetricName"`
+	MetricType  *string                       `json:"MetricType" name:"MetricType"`
+	MonitorType *string                       `json:"MonitorType" name:"MonitorType"`
+	Unit        *string                       `json:"Unit" name:"Unit"`
+	Values      []*DBInstancePerformanceValue `json:"Values" name:"Values"`
 }
 
 type DBInstancePerformanceValue struct {
-	DateTime *string `json:"DateTime"`
-	Value    *int    `json:"Value"`
+	DateTime *string `json:"DateTime" name:"DateTime"`
+	Value    *int    `json:"Value" name:"Value"`
 }
 
 func (response *DescribeDBInstancePerformanceResponse) ToJsonString() string {

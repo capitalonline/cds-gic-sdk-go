@@ -385,8 +385,9 @@ func (r *AddPublicIpRequest) FromJsonString(s string) error {
 
 type AddPublicIpResponse struct {
 	*cdshttp.BaseResponse
-	Code   *string `json:"Code"`
-	TaskId *string `json:"TaskId"`
+	Code    *string `json:"Code"`
+	Message *string `json:"Message"`
+	TaskId  *string `json:"TaskId"`
 }
 
 func (r *AddPublicIpResponse) ToJsonString() string {
@@ -396,6 +397,37 @@ func (r *AddPublicIpResponse) ToJsonString() string {
 
 func (r *AddPublicIpResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
+}
+
+type DeletePublicIpRequest struct {
+	*cdshttp.BaseRequest
+	SegmentId string `json:"SegmentId" name:"SegmentId"`
+}
+
+func (r *DeletePublicIpRequest) ToJsonString() string {
+	bytes, _ := json.Marshal(r)
+	return string(bytes)
+}
+
+func (r *DeletePublicIpRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), r)
+}
+
+type DeletePublicIpResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string     `json:"Code" name:"Code"`
+	Message *string     `json:"Message" name:"Message"`
+	Data    interface{} `json:"Data" name:"Data"`
+	TaskId  *string     `json:"TaskId" name:"TaskId"`
+}
+
+func (r *DeletePublicIpResponse) ToJsonString() string {
+	bytes, _ := json.Marshal(r)
+	return string(bytes)
+}
+
+func (r *DeletePublicIpResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), r)
 }
 
 // Renew public Network Request
