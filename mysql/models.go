@@ -78,6 +78,7 @@ type AvailableDBConfigProduct struct {
 
 type AvailableDBConfigArchitecture struct {
 	ArchitectureName *string                         `json:"ArchitectureName" name:"ArchitectureName"`
+	ArchitectureType *int                            `json:"ArchitectureType" name:"ArchitectureType"`
 	ComputeRoles     []*AvailableDBConfigComputeRole `json:"ComputeRoles" name:"ComputeRoles"`
 	EnginesType      []interface{}                   `json:"EnginesType" name:"EnginesType"`
 	NetworkLinks     []*AvailableDBConfigNetworkLink `json:"NetworkLinks" name:"NetworkLinks"`
