@@ -39,6 +39,7 @@ type SystemDisk struct {
 type DataDisk struct {
 	Size *int    `json:"Size,omitempty" name:"Size"`
 	Type *string `json:"Type,omitempty" name:"Type"`
+	IOPS *int    `json:"IOPS,omitempty" name:"IOPS"`
 }
 
 type PrivateIp struct {
@@ -277,6 +278,7 @@ type ResizeDiskRequest struct {
 	InstanceId *string `json:"InstanceId,omitempty" name:"InstanceId"`
 	DiskId     *string `json:"DiskId,omitempty" name:"DiskId"`
 	DataSize   *int    `json:"DataSize,omitempty" name:"DataSize"`
+	IOPS       *int    `json:"IOPS,omitempty" name:"IOPS"`
 }
 
 func (instance *ResizeDiskRequest) ToJsonString() string {
