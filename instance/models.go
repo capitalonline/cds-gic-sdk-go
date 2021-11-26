@@ -107,7 +107,7 @@ type DescribeReturnInfo struct {
 
 type DisksInfo struct {
 	DataDisks       []*DataDisksInfo `json:"DataDisks"`
-	SystemDisk      *map[string]int  `json:"SystemDisk"`
+	SystemDisk      *SystemDiskInfo  `json:"SystemDisk"`
 	LeftDataDiskNum *int             `json:"LeftDataDiskNum"`
 }
 
@@ -116,6 +116,14 @@ type DataDisksInfo struct {
 	DiskType *string `json:"DiskType"`
 	Size     *int    `json:"Size"`
 	IopsSize *int    `json:"IopsSize"`
+	Iops     *int    `json:"Iops"`
+}
+
+type SystemDiskInfo struct {
+	DiskType *string `json:"DiskType"`
+	Size     *int    `json:"Size"`
+	IopsSize *int    `json:"IopsSize"`
+	Iops     *int    `json:"Iops"`
 }
 
 type PrivateNetworkInterfaceInfo struct {
@@ -365,5 +373,36 @@ func (instance *ModifyIpResponse) ToJsonString() string {
 }
 
 func (instance *ModifyIpResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &instance)
+}
+
+type ExtendSystemDiskRequest struct {
+	*cdshttp.BaseRequest
+	InstanceId *string `json:"InstanceId,omitempty" name:"InstanceId"`
+	Size       *int    `json:"Size,omitempty" name:"Size"`
+	IOPS       *int    `json:"IOPS,omitempty" name:"IOPS"`
+}
+
+type ExtendSystemDiskResponse struct {
+	*cdshttp.BaseResponse
+	Code   *string
+	TaskId *string
+}
+
+func (instance *ExtendSystemDiskRequest) ToJsonString() string {
+	b, _ := json.Marshal(instance)
+	return string(b)
+}
+
+func (instance *ExtendSystemDiskRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &instance)
+}
+
+func (instance *ExtendSystemDiskResponse) ToJsonString() string {
+	b, _ := json.Marshal(instance)
+	return string(b)
+}
+
+func (instance *ExtendSystemDiskResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &instance)
 }
