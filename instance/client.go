@@ -237,3 +237,27 @@ func (c *Client) ModifyIpAddress(request *ModifyIpRequest) (response *ModifyIpRe
 	err = c.Send(request, response)
 	return
 }
+
+func NewExtendSystemDiskRequest() (request *ExtendSystemDiskRequest) {
+	request = &ExtendSystemDiskRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "ExtendSystemDisk")
+	return
+}
+
+func NewExtendSystemDiskResponse() (response *ExtendSystemDiskResponse) {
+	response = &ExtendSystemDiskResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return
+}
+
+func (c *Client) ExtendSystemDisk(request *ExtendSystemDiskRequest) (response *ExtendSystemDiskResponse, err error) {
+	if request == nil {
+		request = NewExtendSystemDiskRequest()
+	}
+	response = NewExtendSystemDiskResponse()
+	err = c.Send(request, response)
+	return
+}

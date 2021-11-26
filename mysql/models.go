@@ -87,6 +87,7 @@ type AvailableDBConfigArchitecture struct {
 
 type AvailableDBConfigComputeRole struct {
 	ComputeName *string                     `json:"ComputeName" name:"ComputeName"`
+	ComputeType *int                        `json:"ComputeType" name:"ComputeType"`
 	Standards   *AvailableDBConfigStandards `json:"Standards" name:"Standards"`
 }
 
