@@ -542,7 +542,7 @@ type DescribeLoadBalancerStrategysData struct {
 }
 
 type DescribeLoadBalancerStrategysHttpListeners struct {
-	AclWhiteList       []*string                                      `json:"AclWhiteList,omitempty" name:"AclWhiteList"`
+	AclWhiteList       []*string                                      `json:"AclWhiteList" name:"AclWhiteList"`
 	BackendServer      []*DescribeLoadBalancerStrategysBackendServer  `json:"BackendServer,omitempty" name:"BackendServer"`
 	CertificateIds     []*DescribeLoadBalancerStrategysCertificateIds `json:"CertificateIds,omitempty" name:"CertificateIds"`
 	ClientTimeout      *string                                        `json:"ClientTimeout,omitempty" name:"ClientTimeout"`
@@ -560,7 +560,7 @@ type DescribeLoadBalancerStrategysHttpListeners struct {
 }
 
 type DescribeLoadBalancerStrategysTcpListeners struct {
-	AclWhiteList       []*string                                     `json:"AclWhiteList,omitempty" name:"AclWhiteList"`
+	AclWhiteList       []*string                                     `json:"AclWhiteList" name:"AclWhiteList"`
 	BackendServer      []*DescribeLoadBalancerStrategysBackendServer `json:"BackendServer,omitempty" name:"BackendServer"`
 	ClientTimeout      *string                                       `json:"ClientTimeout,omitempty" name:"ClientTimeout"`
 	ClientTimeoutUnit  *string                                       `json:"ClientTimeoutUnit,omitempty" name:"ClientTimeoutUnit"`
