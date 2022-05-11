@@ -140,6 +140,7 @@ type CreateDBInstanceRequest struct {
 	DiskValue    *int    `json:"DiskValue" name:"DiskValue"`
 	Password     *string `json:"Password" name:"Password"`
 	Amount       *int    `json:"Amount" name:"Amount"`
+	TimeZone     *string `json:"TimeZone,omitempty" name:"TimeZone"`
 }
 
 func (request *CreateDBInstanceRequest) ToJsonString() string {
@@ -481,9 +482,10 @@ func (response *CreateReadOnlyDBInstanceResponse) FromJsonString(s string) error
 
 type CreateBackupRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
-	BackupType   *string `json:"BackupType" name:"BackupType"`
-	Desc         *string `json:"Desc" name:"Desc"`
+	InstanceUuid *string  `json:"InstanceUuid" name:"InstanceUuid"`
+	BackupType   *string  `json:"BackupType" name:"BackupType"`
+	Desc         *string  `json:"Desc" name:"Desc"`
+	DBList       []string `json:"DBList,omitempty" name:"DBList"`
 }
 
 func (request *CreateBackupRequest) ToJsonString() string {
@@ -886,5 +888,116 @@ func (response *DescribeDBInstancePerformanceResponse) ToJsonString() string {
 }
 
 func (response *DescribeDBInstancePerformanceResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), response)
+}
+
+type ModifyDBParameterRequest struct {
+	*cdshttp.BaseRequest
+	InstanceUuid *string                        `json:"InstanceUuid,omitempty" name:"InstanceUuid"`
+	Parameters   []*ModifyDBParameterParameters `json:"Parameters,omitempty" name:"Parameters"`
+}
+
+type ModifyDBParameterParameters struct {
+	Name  *string `json:"Name" name:"Name"`
+	Value *string `json:"Value" name:"Value"`
+}
+
+func (request *ModifyDBParameterRequest) ToJsonString() string {
+	bytes, _ := json.Marshal(request)
+	return string(bytes)
+}
+
+func (request *ModifyDBParameterRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), request)
+}
+
+type ModifyDBParameterResponse struct {
+	*cdshttp.BaseResponse
+	TaskId  *string      `json:"TaskId,omitempty" name:"TaskId"`
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+	Message *string      `json:"Message,omitempty" name:"Message"`
+}
+
+func (response *ModifyDBParameterResponse) ToJsonString() string {
+	bytes, _ := json.Marshal(response)
+	return string(bytes)
+}
+
+func (response *ModifyDBParameterResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), response)
+}
+
+type ModifyDbBackupPolicyRequest struct {
+	*cdshttp.BaseRequest
+	InstanceUuid *string                          `json:"InstanceUuid,omitempty" name:"InstanceUuid"`
+	DataBackups  *ModifyDbBackupPolicyDataBackups `json:"DataBackups,omitempty" name:"DataBackups"`
+}
+
+type ModifyDbBackupPolicyDataBackups struct {
+	TimeSlot *string  `json:"TimeSlot,omitempty" name:"TimeSlot"`
+	DateList []string `json:"DateList,omitempty" name:"DateList"`
+	Sign     *int     `json:"Sign,omitempty" name:"Sign"`
+}
+
+func (request *ModifyDbBackupPolicyRequest) ToJsonString() string {
+	bytes, _ := json.Marshal(request)
+	return string(bytes)
+}
+
+func (request *ModifyDbBackupPolicyRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), request)
+}
+
+type ModifyDbBackupPolicyResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code" name:"Code"`
+	Message *string      `json:"Message" name:"Message"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *ModifyDbBackupPolicyResponse) ToJsonString() string {
+	bytes, _ := json.Marshal(response)
+	return string(bytes)
+}
+
+func (response *ModifyDbBackupPolicyResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), response)
+}
+
+type ModifyDbPrivilegeRequest struct {
+	*cdshttp.BaseRequest
+	InstanceUuid *string                       `json:"InstanceUuid,omitempty" name:"InstanceUuid"`
+	AccountName  *string                       `json:"AccountName,omitempty" name:"AccountName"`
+	Operations   []*ModifyDbPrivilegeOperation `json:"Operations,omitempty" name:"Operations"`
+}
+
+type ModifyDbPrivilegeOperation struct {
+	DBName    *string `json:"DBName,omitempty" name:"DBName"`
+	Privilege *string `json:"Privilege,omitempty" name:"Privilege"`
+}
+
+func (request *ModifyDbPrivilegeRequest) ToJsonString() string {
+	bytes, _ := json.Marshal(request)
+	return string(bytes)
+}
+
+func (request *ModifyDbPrivilegeRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), request)
+}
+
+type ModifyDbPrivilegeResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code" name:"Code"`
+	Message *string      `json:"Message" name:"Message"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *ModifyDbPrivilegeResponse) ToJsonString() string {
+	bytes, _ := json.Marshal(response)
+	return string(bytes)
+}
+
+func (response *ModifyDbPrivilegeResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), response)
 }

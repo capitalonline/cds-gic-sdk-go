@@ -191,6 +191,30 @@ func (client *Client) DescribeDBInstancePerformanceRequest(request *DescribeDBIn
 	return response, client.Send(request, response)
 }
 
+func (client *Client) ModifyDBParameter(request *ModifyDBParameterRequest) (*ModifyDBParameterResponse, error) {
+	if request == nil {
+		request = NewModifyDBParameterRequest()
+	}
+	response := NewModifyDBParameterResponse()
+	return response, client.Send(request, response)
+}
+
+func (client *Client) ModifyDbBackupPolicy(request *ModifyDbBackupPolicyRequest) (*ModifyDbBackupPolicyResponse, error) {
+	if request == nil {
+		request = NewModifyDbBackupPolicyRequest()
+	}
+	response := NewModifyDbBackupPolicyResponse()
+	return response, client.Send(request, response)
+}
+
+func (client *Client) ModifyDbPrivilege(request *ModifyDbPrivilegeRequest) (*ModifyDbPrivilegeResponse, error) {
+	if request == nil {
+		request = NewModifyDbPrivilegeRequest()
+	}
+	response := NewModifyDbPrivilegeResponse()
+	return response, client.Send(request, response)
+}
+
 func NewDescribeRegionsRequest() *DescribeRegionsRequest {
 	request := &DescribeRegionsRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -481,6 +505,48 @@ func NewDescribeDBInstancePerformanceRequest() *DescribeDBInstancePerformanceReq
 
 func NewDescribeDBInstancePerformanceResponse() *DescribeDBInstancePerformanceResponse {
 	return &DescribeDBInstancePerformanceResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+}
+
+func NewModifyDBParameterRequest() *ModifyDBParameterRequest {
+	request := &ModifyDBParameterRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo(MySqlService, ApiVersion, "ModifyDBParameter")
+	return request
+}
+
+func NewModifyDBParameterResponse() *ModifyDBParameterResponse {
+	return &ModifyDBParameterResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+}
+
+func NewModifyDbBackupPolicyRequest() *ModifyDbBackupPolicyRequest {
+	request := &ModifyDbBackupPolicyRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo(MySqlService, ApiVersion, "ModifyDbBackupPolicy")
+	return request
+}
+
+func NewModifyDbBackupPolicyResponse() *ModifyDbBackupPolicyResponse {
+	return &ModifyDbBackupPolicyResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+}
+
+func NewModifyDbPrivilegeRequest() *ModifyDbPrivilegeRequest {
+	request := &ModifyDbPrivilegeRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo(MySqlService, ApiVersion, "ModifyDbPrivilege")
+	return request
+}
+
+func NewModifyDbPrivilegeResponse() *ModifyDbPrivilegeResponse {
+	return &ModifyDbPrivilegeResponse{
 		BaseResponse: &cdshttp.BaseResponse{},
 	}
 }
