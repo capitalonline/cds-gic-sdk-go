@@ -542,21 +542,23 @@ type DescribeLoadBalancerStrategysData struct {
 }
 
 type DescribeLoadBalancerStrategysHttpListeners struct {
-	AclWhiteList       []*string                                      `json:"AclWhiteList" name:"AclWhiteList"`
-	BackendServer      []*DescribeLoadBalancerStrategysBackendServer  `json:"BackendServer,omitempty" name:"BackendServer"`
-	CertificateIds     []*DescribeLoadBalancerStrategysCertificateIds `json:"CertificateIds,omitempty" name:"CertificateIds"`
-	ClientTimeout      *string                                        `json:"ClientTimeout,omitempty" name:"ClientTimeout"`
-	ClientTimeoutUnit  *string                                        `json:"ClientTimeoutUnit,omitempty" name:"ClientTimeoutUnit"`
-	ConnectTimeout     *string                                        `json:"ConnectTimeout,omitempty" name:"ConnectTimeout"`
-	ConnectTimeoutUnit *string                                        `json:"ConnectTimeoutUnit,omitempty" name:"ConnectTimeoutUnit"`
-	ListenerMode       *string                                        `json:"ListenerMode,omitempty" name:"ListenerMode"`
-	ListenerName       *string                                        `json:"ListenerName,omitempty" name:"ListenerName"`
-	ListenerPort       *int                                           `json:"ListenerPort,omitempty" name:"ListenerPort"`
-	MaxConn            *int                                           `json:"MaxConn,omitempty" name:"MaxConn"`
-	Scheduler          *string                                        `json:"Scheduler,omitempty" name:"Scheduler"`
-	ServerTimeout      *string                                        `json:"ServerTimeout,omitempty" name:"ServerTimeout"`
-	ServerTimeoutUnit  *string                                        `json:"ServerTimeoutUnit,omitempty" name:"ServerTimeoutUnit"`
-	StickySession      *string                                        `json:"StickySession"`
+	AclWhiteList       []*string                                        `json:"AclWhiteList" name:"AclWhiteList"`
+	BackendServer      []*DescribeLoadBalancerStrategysBackendServer    `json:"BackendServer,omitempty" name:"BackendServer"`
+	CertificateIds     []*DescribeLoadBalancerStrategysCertificateIds   `json:"CertificateIds,omitempty" name:"CertificateIds"`
+	ClientTimeout      *string                                          `json:"ClientTimeout,omitempty" name:"ClientTimeout"`
+	ClientTimeoutUnit  *string                                          `json:"ClientTimeoutUnit,omitempty" name:"ClientTimeoutUnit"`
+	ConnectTimeout     *string                                          `json:"ConnectTimeout,omitempty" name:"ConnectTimeout"`
+	ConnectTimeoutUnit *string                                          `json:"ConnectTimeoutUnit,omitempty" name:"ConnectTimeoutUnit"`
+	ListenerMode       *string                                          `json:"ListenerMode,omitempty" name:"ListenerMode"`
+	ListenerName       *string                                          `json:"ListenerName,omitempty" name:"ListenerName"`
+	ListenerPort       *int                                             `json:"ListenerPort,omitempty" name:"ListenerPort"`
+	MaxConn            *int                                             `json:"MaxConn,omitempty" name:"MaxConn"`
+	Scheduler          *string                                          `json:"Scheduler,omitempty" name:"Scheduler"`
+	ServerTimeout      *string                                          `json:"ServerTimeout,omitempty" name:"ServerTimeout"`
+	ServerTimeoutUnit  *string                                          `json:"ServerTimeoutUnit,omitempty" name:"ServerTimeoutUnit"`
+	StickySession      *string                                          `json:"StickySession"`
+	SessionPersistence *DescribeLoadBalancerStrategysSessionPersistence `json:"SessionPersistence,omitempty" name:"SessionPersistence"`
+	Option             *DescribeLoadBalancerStrategysOption             `json:"Option,omitempty" name:"Option"`
 }
 
 type DescribeLoadBalancerStrategysTcpListeners struct {
@@ -580,6 +582,26 @@ type DescribeLoadBalancerStrategysBackendServer struct {
 	MaxConn *int    `json:"MaxConn,omitempty" name:"MaxConn"`
 	Port    *int    `json:"Port,omitempty" name:"Port"`
 	Weight  *string `json:"Weight,omitempty" name:"Weight"`
+}
+
+type DescribeLoadBalancerStrategysSessionPersistence struct {
+	Key   *string                             `json:"Key,omitempty" name:"Key"`
+	Mode  *int                                `json:"Mode,omitempty" name:"Mode"`
+	Timer *DescribeLoadBalancerStrategysTimer `json:"Timer,omitempty" name:"Timer"`
+}
+
+type DescribeLoadBalancerStrategysTimer struct {
+	MaxIdle *int `json:"MaxIdle,omitempty" name:"MaxIdle"`
+	MaxLife *int `json:"MaxLife,omitempty" name:"MaxLife"`
+}
+
+type DescribeLoadBalancerStrategysOption struct {
+	Httpchk *DescribeLoadBalancerStrategysOptionHttpchk
+}
+
+type DescribeLoadBalancerStrategysOptionHttpchk struct {
+	Method *string `json:"Method,omitempty" name:"Method"`
+	Uri    *string `json:"Uri,omitempty" name:"Uri"`
 }
 
 type DescribeLoadBalancerStrategysCertificateIds struct {
@@ -617,5 +639,36 @@ func (response *ModifyLoadBalancerStrategysResponse) ToJsonString() string {
 }
 
 func (response *ModifyLoadBalancerStrategysResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), response)
+}
+
+type ModifyLoadBalancerNameRequest struct {
+	*cdshttp.BaseRequest
+	InstanceUuid *string `json:"InstanceUuid,omitempty" name:"InstanceUuid"`
+	InstanceName *string `json:"InstanceName,omitempty" name:"InstanceName"`
+}
+
+func (request *ModifyLoadBalancerNameRequest) ToJsonString() string {
+	bytes, _ := json.Marshal(request)
+	return string(bytes)
+}
+
+func (request *ModifyLoadBalancerNameRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), request)
+}
+
+type ModifyLoadBalancerNameResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code" name:"Code"`
+	Message *string      `json:"Message" name:"Message"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *ModifyLoadBalancerNameResponse) ToJsonString() string {
+	bytes, _ := json.Marshal(response)
+	return string(bytes)
+}
+
+func (response *ModifyLoadBalancerNameResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), response)
 }

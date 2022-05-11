@@ -28,6 +28,7 @@ type AddInstanceRequest struct {
 	PrivateIp          []*PrivateIp `json:"PrivateIp,omitempty" name:"PrivateIp"`
 	Amount             *int         `json:"Amount,omitempty" name:"Amount"`
 	UTC                *bool        `json:"UTC,omitempty" name:"UTC"`
+	ImagePassword      *string      `json:"ImagePassword,omitempty" name:"ImagePassword"`
 }
 
 type SystemDisk struct {

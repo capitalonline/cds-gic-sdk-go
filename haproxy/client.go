@@ -140,6 +140,15 @@ func (client *Client) ModifyLoadBalancerStrategys(request *ModifyLoadBalancerStr
 	return response, client.Send(request, response)
 }
 
+// 修改负载均衡名称
+func (client *Client) ModifyLoadBalancerName(request *ModifyLoadBalancerNameRequest) (*ModifyLoadBalancerNameResponse, error) {
+	if request == nil {
+		request = NewModifyLoadBalancerNameRequest()
+	}
+	response := NewModifyLoadBalancerNameResponse()
+	return response, client.Send(request, response)
+}
+
 func NewDescribeZonesRequest() *DescribeZonesRequest {
 	request := &DescribeZonesRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -318,6 +327,20 @@ func NewModifyLoadBalancerStrategysRequest() *ModifyLoadBalancerStrategysRequest
 
 func NewModifyLoadBalancerStrategysResponse() *ModifyLoadBalancerStrategysResponse {
 	return &ModifyLoadBalancerStrategysResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+}
+
+func NewModifyLoadBalancerNameRequest() *ModifyLoadBalancerNameRequest {
+	request := &ModifyLoadBalancerNameRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo(HaproxyService, ApiVersion, "ModifyLoadBalancerName")
+	return request
+}
+
+func NewModifyLoadBalancerNameResponse() *ModifyLoadBalancerNameResponse {
+	return &ModifyLoadBalancerNameResponse{
 		BaseResponse: &cdshttp.BaseResponse{},
 	}
 }
