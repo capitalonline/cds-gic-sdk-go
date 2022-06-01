@@ -141,6 +141,7 @@ type CreateDBInstanceRequest struct {
 	Password     *string `json:"Password" name:"Password"`
 	Amount       *int    `json:"Amount" name:"Amount"`
 	TimeZone     *string `json:"TimeZone,omitempty" name:"TimeZone"`
+	ServicePort  *int    `json:"ServicePort,omitempty" name:"ServicePort"`
 }
 
 func (request *CreateDBInstanceRequest) ToJsonString() string {
@@ -421,10 +422,17 @@ func (request *DescribeAvailableReadOnlyConfigRequest) FromJsonString(s string) 
 
 type DescribeAvailableReadOnlyConfigResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string                `json:"Code" name:"Code"`
-	Message *string                `json:"Message" name:"Message"`
-	Data    *AvailableDBConfigData `json:"Data" name:"Data"`
-	TaskId  *string                `json:"TaskId" name:"TaskId"`
+	Code    *string                      `json:"Code" name:"Code"`
+	Message *string                      `json:"Message" name:"Message"`
+	Data    *AvailableReadOnlyConfigData `json:"Data" name:"Data"`
+	TaskId  *string                      `json:"TaskId" name:"TaskId"`
+}
+
+type AvailableReadOnlyConfigData struct {
+	ArchitectureName *string                         `json:"ArchitectureName" name:"ArchitectureName"`
+	ComputeRoles     []*AvailableDBConfigComputeRole `json:"ComputeRoles" name:"ComputeRoles"`
+	SubProductName   *string                         `json:"SubProductName" name:"SubProductName"`
+	Version          *string                         `json:"Version" name:"Version"`
 }
 
 type AvailableDBConfigData struct {
@@ -450,8 +458,9 @@ type CreateReadOnlyDBInstanceRequest struct {
 	PaasGoodsId  *int    `json:"PaasGoodsId" name:"PaasGoodsId"`
 	DiskType     *string `json:"DiskType" name:"DiskType"`
 	DiskValue    *int    `json:"DiskValue" name:"DiskValue"`
-	TestGroupId  *int    `json:"TestGroupId" name:"TestGroupId"`
-	Amount       *int    `json:"Amount" name:"Amount"`
+	TestGroupId  *int    `json:"TestGroupId,omitempty" name:"TestGroupId"`
+	Amount       *int    `json:"Amount,omitempty" name:"Amount"`
+	ServicePort  *int    `json:"ServicePort,omitempty" name:"ServicePort"`
 }
 
 func (request *CreateReadOnlyDBInstanceRequest) ToJsonString() string {
@@ -999,5 +1008,51 @@ func (response *ModifyDbPrivilegeResponse) ToJsonString() string {
 }
 
 func (response *ModifyDbPrivilegeResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), response)
+}
+
+type DescribeDBAccountRequest struct {
+	*cdshttp.BaseRequest
+	InstanceUuid *string `json:"InstanceUuid" name:"InstanceUuid"`
+}
+
+func (request *DescribeDBAccountRequest) ToJsonString() string {
+	bytes, _ := json.Marshal(request)
+	return string(bytes)
+}
+
+func (request *DescribeDBAccountRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), request)
+}
+
+type DescribeDBAccountResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string                          `json:"Code" name:"Code"`
+	Message *string                          `json:"Message" name:"Message"`
+	Data    []*DescribeDBAccountResponseData `json:"Data,omitempty" name:"Data"`
+}
+
+type DescribeDBAccountResponseData struct {
+	AccountType        *string                                        `json:"AccountType" name:"AccountType"`
+	ServiceId          *string                                        `json:"ServiceId" name:"ServiceId"`
+	AccountStatus      *string                                        `json:"AccountStatus" name:"AccountStatus"`
+	AccountName        *string                                        `json:"AccountName" name:"AccountName"`
+	AccountDescription *string                                        `json:"AccountDescription" name:"AccountDescription"`
+	DatabasePrivileges []*DescribeDBAccountResponseDatabasePrivileges `json:"AccountDescription" name:"AccountDescription"`
+}
+
+type DescribeDBAccountResponseDatabasePrivileges struct {
+	AccountPrivilegeType   *string `json:"AccountPrivilegeType" name:"AccountPrivilegeType"`
+	DBName                 *string `json:"DBName" name:"DBName"`
+	TableName              *string `json:"TableName" name:"TableName"`
+	AccountPrivilegeDetail *string `json:"AccountPrivilegeDetail" name:"AccountPrivilegeDetail"`
+}
+
+func (response *DescribeDBAccountResponse) ToJsonString() string {
+	bytes, _ := json.Marshal(response)
+	return string(bytes)
+}
+
+func (response *DescribeDBAccountResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), response)
 }

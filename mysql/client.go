@@ -215,6 +215,14 @@ func (client *Client) ModifyDbPrivilege(request *ModifyDbPrivilegeRequest) (*Mod
 	return response, client.Send(request, response)
 }
 
+func (client *Client) DescribeDBAccount(request *DescribeDBAccountRequest) (*DescribeDBAccountResponse, error) {
+	if request == nil {
+		request = NewDescribeDBAccountRequest()
+	}
+	response := NewDescribeDBAccountResponse()
+	return response, client.Send(request, response)
+}
+
 func NewDescribeRegionsRequest() *DescribeRegionsRequest {
 	request := &DescribeRegionsRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
@@ -547,6 +555,18 @@ func NewModifyDbPrivilegeRequest() *ModifyDbPrivilegeRequest {
 
 func NewModifyDbPrivilegeResponse() *ModifyDbPrivilegeResponse {
 	return &ModifyDbPrivilegeResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+}
+
+func NewDescribeDBAccountRequest() *DescribeDBAccountRequest {
+	return &DescribeDBAccountRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+}
+
+func NewDescribeDBAccountResponse() *DescribeDBAccountResponse {
+	return &DescribeDBAccountResponse{
 		BaseResponse: &cdshttp.BaseResponse{},
 	}
 }
