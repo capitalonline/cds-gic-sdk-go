@@ -560,9 +560,11 @@ func NewModifyDbPrivilegeResponse() *ModifyDbPrivilegeResponse {
 }
 
 func NewDescribeDBAccountRequest() *DescribeDBAccountRequest {
-	return &DescribeDBAccountRequest{
+	request := &DescribeDBAccountRequest{
 		BaseRequest: &cdshttp.BaseRequest{},
 	}
+	request.Init().WithApiInfo(MySqlService, ApiVersion, "DescribeDBAccount")
+	return request
 }
 
 func NewDescribeDBAccountResponse() *DescribeDBAccountResponse {

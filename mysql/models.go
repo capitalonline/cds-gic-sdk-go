@@ -976,9 +976,14 @@ func (response *ModifyDbBackupPolicyResponse) FromJsonString(s string) error {
 
 type ModifyDbPrivilegeRequest struct {
 	*cdshttp.BaseRequest
-	InstanceUuid *string                       `json:"InstanceUuid,omitempty" name:"InstanceUuid"`
-	AccountName  *string                       `json:"AccountName,omitempty" name:"AccountName"`
-	Operations   []*ModifyDbPrivilegeOperation `json:"Operations,omitempty" name:"Operations"`
+	InstanceUuid   *string                          `json:"InstanceUuid,omitempty" name:"InstanceUuid"`
+	AccountName    *string                          `json:"AccountName,omitempty" name:"AccountName"`
+	Operations     []*ModifyDbPrivilegeOperation    `json:"Operations,omitempty" name:"Operations"`
+	ExtraPrivilege *ModifyDbPrivilegeExtraPrivilege `json:"ExtraPrivilege,omitempty" name:"ExtraPrivilege"`
+}
+
+type ModifyDbPrivilegeExtraPrivilege struct {
+	AllCreate *string `json:"AllCreate,omitempty" name:"AllCreate"`
 }
 
 type ModifyDbPrivilegeOperation struct {
@@ -1039,6 +1044,11 @@ type DescribeDBAccountResponseData struct {
 	AccountName        *string                                        `json:"AccountName" name:"AccountName"`
 	AccountDescription *string                                        `json:"AccountDescription" name:"AccountDescription"`
 	DatabasePrivileges []*DescribeDBAccountResponseDatabasePrivileges `json:"AccountDescription" name:"AccountDescription"`
+	ExtraPrivilege     *DescribeDBAccountResponseExtraPrivilege       `json:"ExtraPrivilege" name:"ExtraPrivilege"`
+}
+
+type DescribeDBAccountResponseExtraPrivilege struct {
+	AllCreate *string `json:"AllCreate" name:"AllCreate"`
 }
 
 type DescribeDBAccountResponseDatabasePrivileges struct {
