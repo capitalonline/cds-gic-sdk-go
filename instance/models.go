@@ -221,9 +221,10 @@ func (instance *ModifyInstanceNameResponse) FromJsonString(s string) error {
 // ModifyInstanceSpec, cpu, ram
 type ModifyInstanceSpecRequest struct {
 	*cdshttp.BaseRequest
-	InstanceId *string `json:"InstanceId,omitempty" name:"InstanceId"`
-	Cpu        *int    `json:"Cpu,omitempty" name:"Cpu"`
-	Ram        *int    `json:"Ram,omitempty" name:"Ram"`
+	InstanceId   *string `json:"InstanceId,omitempty" name:"InstanceId"`
+	Cpu          *int    `json:"Cpu,omitempty" name:"Cpu"`
+	Ram          *int    `json:"Ram,omitempty" name:"Ram"`
+	InstanceType *string `json:"InstanceType,omitempty" name:"InstanceType"`
 }
 
 func (instance *ModifyInstanceSpecRequest) ToJsonString() string {
@@ -351,6 +352,7 @@ type ModifyIpRequest struct {
 	InstanceId  *string `json:"InstanceId,omitempty" name:"InstanceId"`
 	InterfaceId *string `json:"InterfaceId,omitempty" name:"InterfaceId"`
 	Address     *string `json:"Address,omitempty" name:"Address"`
+	Password    *string `json:"Password,omitempty" name:"Password"`
 }
 
 func (instance *ModifyIpRequest) ToJsonString() string {
@@ -406,4 +408,102 @@ func (instance *ExtendSystemDiskResponse) ToJsonString() string {
 
 func (instance *ExtendSystemDiskResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &instance)
+}
+
+type ResetInstancesPasswordRequest struct {
+	*cdshttp.BaseRequest
+	InstanceIds *string `json:"InstanceIds,omitempty" name:"InstanceIds"`
+	Password    *string `json:"Password,omitempty" name:"Password"`
+}
+
+func (request *ResetInstancesPasswordRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *ResetInstancesPasswordRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type ResetInstancesPasswordResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	TaskId  *string      `json:"TaskId,omitempty" name:"TaskId"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *ResetInstancesPasswordResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *ResetInstancesPasswordResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
+}
+
+type ResetImageRequest struct {
+	*cdshttp.BaseRequest
+	InstanceId    *string `json:"InstanceId,omitempty" name:"InstanceId"`
+	ImageId       *string `json:"ImageId,omitempty" name:"ImageId"`
+	ImagePassword *string `json:"ImagePassword,omitempty" name:"ImagePassword"`
+	Password      *string `json:"Password,omitempty" name:"Password"`
+	PublicKey     *string `json:"PublicKey,omitempty" name:"PublicKey"`
+	ProductId     *string `json:"ProductId,omitempty" name:"ProductId"`
+}
+
+func (request *ResetImageRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *ResetImageRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type ResetImageResponse struct {
+	*cdshttp.BaseResponse
+	Code   *string `json:"Code,omitempty" name:"Code"`
+	TaskId *string `json:"TaskId,omitempty" name:"TaskId"`
+}
+
+func (response *ResetImageResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *ResetImageResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
+}
+
+type ModifyInstanceChargeTypeRequest struct {
+	*cdshttp.BaseRequest
+	InstanceId         *string `json:"InstanceId,omitempty" name:"InstanceId"`
+	InstanceChargeType *string `json:"InstanceChargeType,omitempty" name:"InstanceChargeType"`
+	AutoRenew          *int    `json:"AutoRenew,omitempty" name:"AutoRenew"`
+	PrepaidMonth       *int    `json:"PrepaidMonth,omitempty" name:"PrepaidMonth"`
+}
+
+func (request *ModifyInstanceChargeTypeRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *ModifyInstanceChargeTypeRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type ModifyInstanceChargeTypeResponse struct {
+	*cdshttp.BaseResponse
+	Code   *string `json:"Code,omitempty" name:"Code"`
+	TaskId *string `json:"TaskId,omitempty" name:"TaskId"`
+}
+
+func (response *ModifyInstanceChargeTypeResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *ModifyInstanceChargeTypeResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
 }

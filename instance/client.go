@@ -261,3 +261,75 @@ func (c *Client) ExtendSystemDisk(request *ExtendSystemDiskRequest) (response *E
 	err = c.Send(request, response)
 	return
 }
+
+func NewResetInstancesPasswordRequest() *ResetInstancesPasswordRequest {
+	request := &ResetInstancesPasswordRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "ResetInstancesPassword")
+	return request
+}
+
+func NewResetInstancesPasswordResponse() *ResetInstancesPasswordResponse {
+	response := &ResetInstancesPasswordResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) ResetInstancesPassword(request *ResetInstancesPasswordRequest) (response *ResetInstancesPasswordResponse, err error) {
+	if request == nil {
+		request = NewResetInstancesPasswordRequest()
+	}
+	response = NewResetInstancesPasswordResponse()
+	err = c.Send(request, response)
+	return
+}
+
+func NewResetImageRequest() *ResetImageRequest {
+	request := &ResetImageRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "ResetImage")
+	return request
+}
+
+func NewResetImageResponse() *ResetImageResponse {
+	response := &ResetImageResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) ResetImage(request *ResetImageRequest) (response *ResetImageResponse, err error) {
+	if request == nil {
+		request = NewResetImageRequest()
+	}
+	response = NewResetImageResponse()
+	err = c.Send(request, response)
+	return
+}
+
+func NewModifyInstanceChargeTypeRequest() *ModifyInstanceChargeTypeRequest {
+	request := &ModifyInstanceChargeTypeRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "ModifyInstanceChargeType")
+	return request
+}
+
+func NewModifyInstanceChargeTypeResponse() *ModifyInstanceChargeTypeResponse {
+	response := &ModifyInstanceChargeTypeResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) ModifyInstanceChargeType(request *ModifyInstanceChargeTypeRequest) (response *ModifyInstanceChargeTypeResponse, err error) {
+	if request == nil {
+		request = NewModifyInstanceChargeTypeRequest()
+	}
+	response = NewModifyInstanceChargeTypeResponse()
+	err = c.Send(request, response)
+	return
+}
