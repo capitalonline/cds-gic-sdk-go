@@ -76,11 +76,11 @@ func (instance *AddInstanceResponse) FromJsonString(s string) error {
 //Describe Instance Request
 type DescribeInstanceRequest struct {
 	*cdshttp.BaseRequest
-	VdcId      *string `json:"VdcId,omitempty"`
-	InstanceId *string `json:"InstanceId,omitempty"`
-	PublicIp   *string `json:"PublicIp,omitempty"`
-	PageNumber *int    `json:"PageNumber,omitempty"`
-	PageSize   *int    `json:"PageSize,omitempty"`
+	VdcId      *string   `json:"VdcId,omitempty"`
+	InstanceId *string   `json:"InstanceId,omitempty"`
+	PublicIp   []*string `json:"PublicIp,omitempty"`
+	PageNumber *int      `json:"PageNumber,omitempty"`
+	PageSize   *int      `json:"PageSize,omitempty"`
 }
 
 func (instance *DescribeInstanceRequest) ToJsonString() string {
@@ -104,6 +104,7 @@ type DescribeReturnInfo struct {
 	PrivateNetworkInterface []*PrivateNetworkInterfaceInfo
 	PublicNetworkInterface  []*PublicNetworkInterfaceInfo `json:"PublicNetworkInterface"`
 	InstanceChargeType      *string                       `json:"InstanceChargeType"`
+	CreateTime              *string                       `json:"CreateTime" name:"CreateTime"`
 }
 
 type DisksInfo struct {
