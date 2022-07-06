@@ -10,9 +10,10 @@ import (
 	"github.com/capitalonline/cds-gic-sdk-go/task"
 )
 
+var ak string = "xxxxxx"
+var sk string = "xxxxxx"
+
 func TestClient_CreateInstance(t *testing.T) {
-	ak := ""
-	sk := ""
 	credential := common.NewCredential(ak, sk)
 
 	cpf := profile.NewClientProfile()
@@ -38,7 +39,7 @@ func TestClient_CreateInstance(t *testing.T) {
 		Type: common.StringPtr("high_disk"),
 	}
 	ip := PrivateIp{
-		PrivateID: common.StringPtr("09b2e1a6-6db2-11ea-b6bc-d61f1b70218b"),
+		PrivateID: common.StringPtr("private_id"),
 		IP:        common.StringPtrs([]string{"auto"}),
 	}
 	request.DataDisks = []*DataDisk{&dd1}
@@ -64,17 +65,20 @@ func TestClient_CreateInstance(t *testing.T) {
 }
 
 func TestClient_DescribeInstance(t *testing.T) {
-	credential := common.NewCredential("", "")
+	credential := common.NewCredential(ak, sk)
 
 	cpf := profile.NewClientProfile()
 	cpf.HttpProfile.ReqMethod = "POST"
 	client, _ := NewClient(credential, regions.Beijing, cpf)
 
 	request := NewDescribeInstanceRequest()
-	//request.VdcId = common.StringPtr("")
-	//request.PageNumber = common.IntPtr(1)
-	//request.PageSize = common.IntPtr(1000)
-	request.InstanceId = common.StringPtr("vdc id")
+	request.VdcId = common.StringPtr("")
+	request.PageNumber = common.IntPtr(1)
+	request.PageSize = common.IntPtr(1000)
+	request.InstanceId = common.StringPtr("instance_id")
+	var ips = make([]string, 0, 1)
+	ips = append(ips, "x.x.x.x")
+	request.PublicIp = common.StringPtrs(ips)
 	response, err := client.DescribeInstance(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
 
@@ -106,6 +110,75 @@ func TestClient_DeleteInstance(t *testing.T) {
 	request := NewDeleteInstanceRequest()
 	request.InstanceIds = common.StringPtrs([]string{"instance id"})
 	response, err := client.DeleteInstance(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
+
+func TestClient_ModifyInstanceSpec(t *testing.T) {
+	credential := common.NewCredential(ak, sk)
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "POST"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewModifyInstanceSpecRequest()
+	request.InstanceId = common.StringPtr("")
+	request.Ram = common.IntPtr(8)
+	request.Cpu = common.IntPtr(4)
+	response, err := client.ModifyInstanceSpec(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
+
+func TestClient_CreateDisk(t *testing.T) {
+	credential := common.NewCredential(ak, sk)
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "POST"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewCreateDiskRequest()
+	request.InstanceId = common.StringPtr("")
+	var disks = make([]*DataDisk, 0, 1)
+	request.DataDisks = append(disks, &DataDisk{
+		Size: common.IntPtr(20),
+		Type: common.StringPtr("ssd_disk"),
+		IOPS: common.IntPtr(0),
+	})
+	response, err := client.CreateDisk(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
+
+func TestClient_ResizeDisk(t *testing.T) {
+	credential := common.NewCredential(ak, sk)
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "POST"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewResizeDiskRequest()
+	request.InstanceId = common.StringPtr("")
+	request.DiskId = common.StringPtr("disk_id")
+	request.DataSize = common.IntPtr(30)
+	response, err := client.ResizeDisk(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
+
+func TestClient_DeleteDisk(t *testing.T) {
+	credential := common.NewCredential(ak, sk)
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "POST"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewDeleteDiskRequest()
+	var ids = make([]*string, 0, 1)
+	ids = append(ids, common.StringPtr("disk_id"))
+	request.InstanceId = common.StringPtr("instance_id")
+	request.DiskIds = ids
+	response, err := client.DeleteDisk(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
 
 }
