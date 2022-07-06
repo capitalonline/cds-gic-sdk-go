@@ -72,13 +72,13 @@ func TestClient_DescribeInstance(t *testing.T) {
 	client, _ := NewClient(credential, regions.Beijing, cpf)
 
 	request := NewDescribeInstanceRequest()
-	//request.VdcId = common.StringPtr("")
-	//request.PageNumber = common.IntPtr(1)
-	//request.PageSize = common.IntPtr(1000)
+	request.VdcId = common.StringPtr("")
+	request.PageNumber = common.IntPtr(1)
+	request.PageSize = common.IntPtr(1000)
 	request.InstanceId = common.StringPtr("instance_id")
 	var ips = make([]string, 0, 1)
 	ips = append(ips, "x.x.x.x")
-	//request.PublicIp = common.StringPtrs(ips)
+	request.PublicIp = common.StringPtrs(ips)
 	response, err := client.DescribeInstance(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
 
