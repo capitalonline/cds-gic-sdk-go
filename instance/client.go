@@ -333,3 +333,75 @@ func (c *Client) ModifyInstanceChargeType(request *ModifyInstanceChargeTypeReque
 	err = c.Send(request, response)
 	return
 }
+
+func NewStopInstanceRequest() *StopInstanceRequest {
+	request := &StopInstanceRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "StopInstance")
+	return request
+}
+
+func NewStopInstanceResponse() *StopInstanceResponse {
+	response := &StopInstanceResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) StopInstance(request *StopInstanceRequest) (response *StopInstanceResponse, err error) {
+	if request == nil {
+		request = NewStopInstanceRequest()
+	}
+	response = NewStopInstanceResponse()
+	err = c.Send(request, response)
+	return
+}
+
+func NewRebootInstanceRequest() *RebootInstanceRequest {
+	request := &RebootInstanceRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "RebootInstance")
+	return request
+}
+
+func NewRebootInstanceResponse() *RebootInstanceResponse {
+	response := &RebootInstanceResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) RebootInstance(request *RebootInstanceRequest) (response *RebootInstanceResponse, err error) {
+	if request == nil {
+		request = NewRebootInstanceRequest()
+	}
+	response = NewRebootInstanceResponse()
+	err = c.Send(request, response)
+	return
+}
+
+func NewStartInstanceRequest() *StartInstanceRequest {
+	request := &StartInstanceRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "StartInstance")
+	return request
+}
+
+func NewStartInstanceResponse() *StartInstanceResponse {
+	response := &StartInstanceResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) StartInstance(request *StartInstanceRequest) (response *StartInstanceResponse, err error) {
+	if request == nil {
+		request = NewStartInstanceRequest()
+	}
+	response = NewStartInstanceResponse()
+	err = c.Send(request, response)
+	return
+}
