@@ -29,6 +29,7 @@ type AddInstanceRequest struct {
 	Amount             *int         `json:"Amount,omitempty" name:"Amount"`
 	UTC                *bool        `json:"UTC,omitempty" name:"UTC"`
 	ImagePassword      *string      `json:"ImagePassword,omitempty" name:"ImagePassword"`
+	UserData           []*string    `json:"UserData,omitempty" name:"UserData"`
 }
 
 type SystemDisk struct {
@@ -445,12 +446,13 @@ func (response *ResetInstancesPasswordResponse) ToJsonString() string {
 
 type ResetImageRequest struct {
 	*cdshttp.BaseRequest
-	InstanceId    *string `json:"InstanceId,omitempty" name:"InstanceId"`
-	ImageId       *string `json:"ImageId,omitempty" name:"ImageId"`
-	ImagePassword *string `json:"ImagePassword,omitempty" name:"ImagePassword"`
-	Password      *string `json:"Password,omitempty" name:"Password"`
-	PublicKey     *string `json:"PublicKey,omitempty" name:"PublicKey"`
-	ProductId     *string `json:"ProductId,omitempty" name:"ProductId"`
+	InstanceId    *string   `json:"InstanceId,omitempty" name:"InstanceId"`
+	ImageId       *string   `json:"ImageId,omitempty" name:"ImageId"`
+	ImagePassword *string   `json:"ImagePassword,omitempty" name:"ImagePassword"`
+	Password      *string   `json:"Password,omitempty" name:"Password"`
+	PublicKey     *string   `json:"PublicKey,omitempty" name:"PublicKey"`
+	ProductId     *string   `json:"ProductId,omitempty" name:"ProductId"`
+	UserData      []*string `json:"UserData,omitempty" name:"UserData"`
 }
 
 func (request *ResetImageRequest) FromJsonString(s string) error {
