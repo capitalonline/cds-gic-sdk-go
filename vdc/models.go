@@ -92,6 +92,7 @@ type DescVdcData struct {
 	VdcId          *string              `json:"VdcId" name:"VdcId"`
 	VdcName        *string              `json:"VdcName" name:"VdcName"`
 	RegionId       *string              `json:"RegionId" name:"RegionId"`
+	VdcStatus      *string              `json:"VdcStatus" name:"VdcStatus"`
 	PrivateNetwork []*PrivateNetwork    `json:"PrivateNetwork" name:"PrivateNetwork"`
 	PublicNetwork  []*PublicNetworkInfo `json:"PublicNetwork" name:"PublicNetwork"`
 }
@@ -459,4 +460,40 @@ func (r *RenewPublicNetworkResponse) ToJsonString() string {
 
 func (r *RenewPublicNetworkResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
+}
+
+type CreatePublicNetworkRequest struct {
+	*cdshttp.BaseRequest
+	VdcId          *string `json:"VdcId,omitempty" name:"VdcId" tf:"VdcId"`
+	Name           *string `json:"Name,omitempty" name:"Name" tf:"name"`
+	Type           *string `json:"Type,omitempty" name:"Type" tf:"type"`
+	BillingMethod  *string `json:"BillingMethod,omitempty" name:"BillingMethod" tf:"billingmethod"`
+	Qos            *int    `json:"Qos,omitempty" name:"VQos" tf:"qos"`
+	IPNum          *int    `json:"IPNum,omitempty" name:"IPNum" tf:"ipnum"`
+	AutoRenew      *int    `json:"AutoRenew,omitempty" name:"AutoRenew" tf:"autorenew"`
+	FloatBandwidth *int    `json:"FloatBandwidth,omitempty" name:"FloatBandwidth" tf:"floatbandwidth"`
+}
+
+func (c *CreatePublicNetworkRequest) ToJsonString() string {
+	b, _ := json.Marshal(c)
+	return string(b)
+}
+
+func (c *CreatePublicNetworkRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &c)
+}
+
+type CreatePublicNetworkResponse struct {
+	*cdshttp.BaseResponse
+	Code   *string `json:"Code"`
+	TaskId *string `json:"TaskId"`
+}
+
+func (c *CreatePublicNetworkResponse) ToJsonString() string {
+	b, _ := json.Marshal(c)
+	return string(b)
+}
+
+func (c *CreatePublicNetworkResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &c)
 }

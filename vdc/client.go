@@ -199,6 +199,21 @@ func NewRenewPublicNetworkResponse() (response *RenewPublicNetworkResponse) {
 	return
 }
 
+func NewCreatePublicNetworkRequest() *CreatePublicNetworkRequest {
+	request := &CreatePublicNetworkRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("network", ApiVersion, "CreatePublicNetwork")
+	return request
+}
+
+func NewCreatePublicNetworkResponse() (response *CreatePublicNetworkResponse) {
+	response = &CreatePublicNetworkResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return
+}
+
 func (c *Client) CreateVdc(request *AddVdcRequest) (response *AddVdcResponse, err error) {
 	if request == nil {
 		request = NewAddVdcRequest()
@@ -303,6 +318,15 @@ func (c *Client) RenewPublicNetwork(request *RenewPublicNetworkRequest) (respons
 		request = NewRenewPublicNetworkRequest()
 	}
 	response = NewRenewPublicNetworkResponse()
+	err = c.Send(request, response)
+	return
+}
+
+func (c *Client) CreatePublicNetwork(request *CreatePublicNetworkRequest) (response *CreatePublicNetworkResponse, err error) {
+	if request == nil {
+		request = NewCreatePublicNetworkRequest()
+	}
+	response = NewCreatePublicNetworkResponse()
 	err = c.Send(request, response)
 	return
 }
