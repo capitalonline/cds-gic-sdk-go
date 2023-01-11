@@ -125,9 +125,17 @@ func (c *Client) Init(region string) *Client {
 	c.region = region
 	c.signMethod = "HmacSHA1"
 	//TODO dev:true release:false
-	c.debug = true
+	c.debug = false
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	return c
+}
+
+func (c *Client) SetDebug(flag bool) {
+	c.debug = flag
+}
+
+func (c *Client) GetDebug() bool {
+	return c.debug
 }
 
 func (c *Client) WithSecretId(secretId, secretKey string) *Client {
