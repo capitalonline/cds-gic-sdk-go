@@ -603,3 +603,96 @@ func (response *StartInstanceResponse) ToJsonString() string {
 	b, _ := json.Marshal(response)
 	return string(b)
 }
+
+type StartInstancesRequest struct {
+	*cdshttp.BaseRequest
+	InstanceIds *string `json:"InstanceIds,omitempty" name:"InstanceIds"`
+}
+
+func (request *StartInstancesRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *StartInstancesRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type StartInstancesResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	TaskId  *string      `json:"TaskId,omitempty" name:"TaskId"`
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *StartInstancesResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *StartInstancesResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
+}
+
+type StopInstancesRequest struct {
+	*cdshttp.BaseRequest
+	InstanceIds *string `json:"InstanceIds,omitempty" name:"InstanceIds"`
+}
+
+func (request *StopInstancesRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *StopInstancesRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type StopInstancesResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	TaskId  *string      `json:"TaskId,omitempty" name:"TaskId"`
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *StopInstancesResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *StopInstancesResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
+}
+
+type RebootInstancesRequest struct {
+	*cdshttp.BaseRequest
+	InstanceIds *string `json:"InstanceIds,omitempty" name:"InstanceIds"`
+}
+
+func (request *RebootInstancesRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *RebootInstancesRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type RebootInstancesResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	TaskId  *string      `json:"TaskId,omitempty" name:"TaskId"`
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *RebootInstancesResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *RebootInstancesResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
+}

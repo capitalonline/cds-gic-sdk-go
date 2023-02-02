@@ -405,3 +405,75 @@ func (c *Client) StartInstance(request *StartInstanceRequest) (response *StartIn
 	err = c.Send(request, response)
 	return
 }
+
+func NewStartInstancesRequest() *StartInstancesRequest {
+	request := &StartInstancesRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "StartInstances")
+	return request
+}
+
+func NewStartInstancesResponse() *StartInstancesResponse {
+	response := &StartInstancesResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) StartInstances(request *StartInstancesRequest) (response *StartInstancesResponse, err error) {
+	if request == nil {
+		request = NewStartInstancesRequest()
+	}
+	response = NewStartInstancesResponse()
+	err = c.Send(request, response)
+	return
+}
+
+func NewStopInstancesRequest() *StopInstancesRequest {
+	request := &StopInstancesRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "StopInstances")
+	return request
+}
+
+func NewStopInstancesResponse() *StopInstancesResponse {
+	response := &StopInstancesResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) StopInstances(request *StopInstancesRequest) (response *StopInstancesResponse, err error) {
+	if request == nil {
+		request = NewStopInstancesRequest()
+	}
+	response = NewStopInstancesResponse()
+	err = c.Send(request, response)
+	return
+}
+
+func NewRebootInstancesRequest() *RebootInstancesRequest {
+	request := &RebootInstancesRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "RebootInstances")
+	return request
+}
+
+func NewRebootInstancesResponse() *RebootInstancesResponse {
+	response := &RebootInstancesResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) RebootInstances(request *RebootInstancesRequest) (response *RebootInstancesResponse, err error) {
+	if request == nil {
+		request = NewRebootInstancesRequest()
+	}
+	response = NewRebootInstancesResponse()
+	err = c.Send(request, response)
+	return
+}

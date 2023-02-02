@@ -2,12 +2,11 @@ package instance
 
 import (
 	"fmt"
-	"testing"
-
 	"github.com/capitalonline/cds-gic-sdk-go/common"
 	"github.com/capitalonline/cds-gic-sdk-go/common/profile"
 	"github.com/capitalonline/cds-gic-sdk-go/common/regions"
 	"github.com/capitalonline/cds-gic-sdk-go/task"
+	"testing"
 )
 
 var ak string = "xxxxxx"
@@ -179,6 +178,47 @@ func TestClient_DeleteDisk(t *testing.T) {
 	request.InstanceId = common.StringPtr("instance_id")
 	request.DiskIds = ids
 	response, err := client.DeleteDisk(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
+
+func TestClient_StartInstances(t *testing.T) {
+	credential := common.NewCredential(ak, sk)
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "GET"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewStartInstancesRequest()
+	request.InstanceIds = common.StringPtr("instance_id1,instance_id2")
+	response, err := client.StartInstances(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
+
+func TestClient_StopInstances(t *testing.T) {
+	credential := common.NewCredential(ak, sk)
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "GET"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewStopInstancesRequest()
+	request.InstanceIds = common.StringPtr("instance_id1,instance_id2")
+	response, err := client.StopInstances(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
+
+func TestClient_RebootInstances(t *testing.T) {
+	credential := common.NewCredential(ak, sk)
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "GET"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewRebootInstancesRequest()
+	request.InstanceIds = common.StringPtr("instance_id1,instance_id2")
+	response, err := client.RebootInstances(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
 
 }
