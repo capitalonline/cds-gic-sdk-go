@@ -477,3 +477,27 @@ func (c *Client) RebootInstances(request *RebootInstancesRequest) (response *Reb
 	err = c.Send(request, response)
 	return
 }
+
+func NewDescribeInstanceMonitorRequest() *DescribeInstanceMonitorRequest {
+	request := &DescribeInstanceMonitorRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "DescribeInstanceMonitor")
+	return request
+}
+
+func NewDescribeInstanceMonitorResponse() *DescribeInstanceMonitorResponse {
+	response := &DescribeInstanceMonitorResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) DescribeInstanceMonitor(request *DescribeInstanceMonitorRequest) (response *DescribeInstanceMonitorResponse, err error) {
+	if request == nil {
+		request = NewDescribeInstanceMonitorRequest()
+	}
+	response = NewDescribeInstanceMonitorResponse()
+	err = c.Send(request, response)
+	return
+}

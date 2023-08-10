@@ -9,8 +9,8 @@ import (
 	"testing"
 )
 
-var ak string = "xxxxxx"
-var sk string = "xxxxxx"
+var ak string = "661388847d7d11ebbfe09a2e9725ea8a"
+var sk string = "e5db243bc254558abfb717d1a0c0f125"
 
 func TestClient_CreateInstance(t *testing.T) {
 	credential := common.NewCredential(ak, sk)
@@ -32,6 +32,8 @@ func TestClient_CreateInstance(t *testing.T) {
 	request.PublicIp = common.StringPtrs([]string{"auto"})
 	request.InstanceType = common.StringPtr("Standard") //7960400
 	request.UTC = common.BoolPtr(false)                 //7960400
+	request.DescriptionNum = common.StringPtr("001")
+	request.LabelNames = common.StringPtrs([]string{"label_name"})
 
 	dd1 := DataDisk{
 		Size: common.IntPtr(200),
@@ -219,6 +221,25 @@ func TestClient_RebootInstances(t *testing.T) {
 	request := NewRebootInstancesRequest()
 	request.InstanceIds = common.StringPtr("instance_id1,instance_id2")
 	response, err := client.RebootInstances(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
+
+func TestClient_DescribeInstanceMonitor(t *testing.T) {
+	credential := common.NewCredential(ak, sk)
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "POST"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewDescribeInstanceMonitorRequest()
+	request.InstanceId = common.StringPtr("instance_id1")
+	request.MetricName = common.StringPtr("CPUUtilization")
+	request.StartTime = common.StringPtr("2023-09-24 16:15:00")
+	request.EndTime = common.StringPtr("2023-09-24 16:30:00")
+	request.Period = common.IntPtr(60)
+
+	response, err := client.DescribeInstanceMonitor(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
 
 }
