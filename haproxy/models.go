@@ -311,7 +311,7 @@ type ModifyLoadBalancerInstanceSpecResponse struct {
 	Code    *string      `json:"Code,omitempty" name:"Code"`
 	Data    *interface{} `json:"Data,omitempty" name:"Data"` // UNKNOW TYPE
 	Message *string      `json:"Message,omitempty" name:"Message"`
-	TaskId  *string      `json:"TaksId,omitempty" name:"TaksId"`
+	TaskId  *string      `json:"TaskId,omitempty" name:"TaskId"`
 }
 
 func (response *ModifyLoadBalancerInstanceSpecResponse) ToJsonString() string {
