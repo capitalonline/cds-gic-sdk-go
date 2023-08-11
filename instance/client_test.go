@@ -9,8 +9,8 @@ import (
 	"testing"
 )
 
-var ak string = "661388847d7d11ebbfe09a2e9725ea8a"
-var sk string = "e5db243bc254558abfb717d1a0c0f125"
+var ak string = "xxxxxx"
+var sk string = "xxxxxx"
 
 func TestClient_CreateInstance(t *testing.T) {
 	credential := common.NewCredential(ak, sk)
