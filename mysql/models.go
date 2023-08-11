@@ -657,7 +657,7 @@ func (request *StartBatchRollbackRequest) FromJsonString(s string) error {
 
 type StartBatchRollbackResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string     `json:"Code" name::"Code"`
+	Code    *string     `json:"Code" name:"Code"`
 	Message *string     `json:"Message" name:"Message"`
 	Data    interface{} `json:"Data" name:"Data"`
 	TaskId  *string     `json:"TaskId" name:"TaskId"`
@@ -1043,7 +1043,7 @@ type DescribeDBAccountResponseData struct {
 	AccountStatus      *string                                        `json:"AccountStatus" name:"AccountStatus"`
 	AccountName        *string                                        `json:"AccountName" name:"AccountName"`
 	AccountDescription *string                                        `json:"AccountDescription" name:"AccountDescription"`
-	DatabasePrivileges []*DescribeDBAccountResponseDatabasePrivileges `json:"AccountDescription" name:"AccountDescription"`
+	DatabasePrivileges []*DescribeDBAccountResponseDatabasePrivileges `json:"DatabasePrivileges" name:"DatabasePrivileges"`
 	ExtraPrivilege     *DescribeDBAccountResponseExtraPrivilege       `json:"ExtraPrivilege" name:"ExtraPrivilege"`
 }
 
