@@ -108,10 +108,10 @@ func (r *DescVdcData) FromJsonString(s string) error {
 
 type PrivateNetwork struct {
 	PrivateId  *string   `json:"PrivateId" name:"PrivateId"`
-	Status     *string   `json:"status" name:"Status"`
-	Name       *string   `json:"name" name:"Name"`
-	UnuseIpNum *int      `json:"unuse_ip_num" name:"UnuseIpNum"`
-	Segments   *[]string `json:"segments" name:"Segments"`
+	Status     *string   `json:"Status" name:"Status"`
+	Name       *string   `json:"Name" name:"Name"`
+	UnuseIpNum *int      `json:"UnuseIpNum" name:"UnuseIpNum"`
+	Segments   *[]string `json:"Segments" name:"Segments"`
 }
 
 func (r *PrivateNetwork) ToJsonString() string {
@@ -125,11 +125,11 @@ func (r *PrivateNetwork) FromJsonString(s string) error {
 
 type PublicNetworkInfo struct {
 	PublicId   *string          `json:"PublicId" name:"PublicId"`
-	Status     *string          `json:"status" name:"Status"`
+	Status     *string          `json:"Status" name:"Status"`
 	Qos        *int             `json:"Qos" name:"Qos"`
-	Name       *string          `json:"name" name:"Name"`
-	UnuseIpNum *int             `json:"unuse_ip_num" name:"UnuseIpNum"`
-	Segments   *[]PublicSegment `json:"segments" name:"Segments"`
+	Name       *string          `json:"Name" name:"Name"`
+	UnuseIpNum *int             `json:"UnuseIpNum" name:"UnuseIpNum"`
+	Segments   *[]PublicSegment `json:"Segments" name:"Segments"`
 }
 
 func (r *PublicNetworkInfo) ToJsonString() string {
