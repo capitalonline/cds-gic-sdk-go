@@ -30,6 +30,8 @@ type AddInstanceRequest struct {
 	UTC                *bool        `json:"UTC,omitempty" name:"UTC"`
 	ImagePassword      *string      `json:"ImagePassword,omitempty" name:"ImagePassword"`
 	UserData           []*string    `json:"UserData,omitempty" name:"UserData"`
+	DescriptionNum     *string      `json:"DescriptionNum,omitempty" name:"DescriptionNum"`
+	LabelNames         []*string    `json:"LabelNames,omitempty" name:"LabelNames"`
 }
 
 type SystemDisk struct {
@@ -693,6 +695,42 @@ func (response *RebootInstancesResponse) FromJsonString(s string) error {
 }
 
 func (response *RebootInstancesResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
+}
+
+type DescribeInstanceMonitorRequest struct {
+	*cdshttp.BaseRequest
+	InstanceId  *string `json:"InstanceId,omitempty" name:"InstanceId"`
+	MetricName  *string `json:"MetricName,omitempty" name:"MetricName"`
+	Period      *int    `json:"Period,omitempty" name:"Period"`
+	StartTime   *string `json:"StartTime,omitempty" name:"StartTime"`
+	EndTime     *string `json:"EndTime,omitempty" name:"EndTime"`
+	InterfaceId *string `json:"InterfaceId,omitempty" name:"InterfaceId"`
+	DiskId      *string `json:"DiskId,omitempty" name:"DiskId"`
+}
+
+func (request *DescribeInstanceMonitorRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *DescribeInstanceMonitorRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type DescribeInstanceMonitorResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *DescribeInstanceMonitorResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *DescribeInstanceMonitorResponse) ToJsonString() string {
 	b, _ := json.Marshal(response)
 	return string(b)
 }
