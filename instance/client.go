@@ -501,3 +501,27 @@ func (c *Client) DescribeInstanceMonitor(request *DescribeInstanceMonitorRequest
 	err = c.Send(request, response)
 	return
 }
+
+func NewGetIpInfoBySegmentRequest() *GetIpInfoBySegmentRequest {
+	request := &GetIpInfoBySegmentRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "GetIpInfoBySegment")
+	return request
+}
+
+func NewGetIpInfoBySegmentResponse() *GetIpInfoBySegmentResponse {
+	response := &GetIpInfoBySegmentResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) GetIpInfoBySegment(request *GetIpInfoBySegmentRequest) (response *GetIpInfoBySegmentResponse, err error) {
+	if request == nil {
+		request = NewGetIpInfoBySegmentRequest()
+	}
+	response = NewGetIpInfoBySegmentResponse()
+	err = c.Send(request, response)
+	return
+}

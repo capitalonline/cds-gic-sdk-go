@@ -42,6 +42,8 @@ func TestClient_CreateInstance(t *testing.T) {
 	ip := PrivateIp{
 		PrivateID: common.StringPtr("private_id"),
 		IP:        common.StringPtrs([]string{"auto"}),
+		// 可选参数
+		// Segment:  common.StringPtr("segment_info"),
 	}
 	request.DataDisks = []*DataDisk{&dd1}
 	request.PrivateIp = []*PrivateIp{&ip}
@@ -240,6 +242,22 @@ func TestClient_DescribeInstanceMonitor(t *testing.T) {
 	request.Period = common.IntPtr(60)
 
 	response, err := client.DescribeInstanceMonitor(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
+
+func TestClient_GetIpInfoBySegment(t *testing.T) {
+	credential := common.NewCredential(ak, sk)
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "POST"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewGetIpInfoBySegmentRequest()
+	request.PrivateId = common.StringPtr("pipe_id1")
+	request.Segment = common.StringPtr("segment_info")
+
+	response, err := client.GetIpInfoBySegment(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
 
 }

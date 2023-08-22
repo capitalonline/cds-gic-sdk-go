@@ -49,6 +49,7 @@ type DataDisk struct {
 type PrivateIp struct {
 	PrivateID *string   `json:"PrivateId,omitempty" name:"PrivateId"`
 	IP        []*string `json:"IP,omitempty" name:"IP"`
+	Segment   *string   `json:"Segment,omitempty" name:"Segment"`
 }
 
 func (instance *AddInstanceRequest) ToJsonString() string {
@@ -731,6 +732,37 @@ func (response *DescribeInstanceMonitorResponse) FromJsonString(s string) error 
 }
 
 func (response *DescribeInstanceMonitorResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
+}
+
+type GetIpInfoBySegmentRequest struct {
+	*cdshttp.BaseRequest
+	PrivateId *string `json:"PrivateId,omitempty" name:"PrivateId"`
+	Segment   *string `json:"Segment,omitempty" name:"Segment"`
+}
+
+func (request *GetIpInfoBySegmentRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *GetIpInfoBySegmentRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type GetIpInfoBySegmentResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *GetIpInfoBySegmentResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *GetIpInfoBySegmentResponse) ToJsonString() string {
 	b, _ := json.Marshal(response)
 	return string(b)
 }
