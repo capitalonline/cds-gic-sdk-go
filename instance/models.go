@@ -85,6 +85,9 @@ type DescribeInstanceRequest struct {
 	PublicIp   []*string `json:"PublicIp,omitempty"`
 	PageNumber *int      `json:"PageNumber,omitempty"`
 	PageSize   *int      `json:"PageSize,omitempty"`
+	VdcName    *string   `json:"VdcName,omitempty"`
+	TagName    *string   `json:"TagName,omitempty"`
+	RegionId   *string   `json:"RegionId,omitempty"`
 }
 
 func (instance *DescribeInstanceRequest) ToJsonString() string {
