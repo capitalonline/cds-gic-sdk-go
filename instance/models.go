@@ -153,7 +153,7 @@ type PublicNetworkInterfaceInfo struct {
 	PublicId    *string `json:"PublicId"`
 }
 
-type DescribeInstanceReponse struct {
+type DescribeInstanceResponse struct {
 	*cdshttp.BaseResponse
 	Code    *string `json:"Code"`
 	Message *string `json:"Message"`
@@ -161,15 +161,16 @@ type DescribeInstanceReponse struct {
 		Instances  []*DescribeReturnInfo
 		PageNumber *int `json:"PageNumber"`
 		PageCount  *int `json:"PageCount"`
+		Total      *int `json:"Total"`
 	}
 }
 
-func (instance *DescribeInstanceReponse) ToJsonString() string {
+func (instance *DescribeInstanceResponse) ToJsonString() string {
 	b, _ := json.Marshal(instance)
 	return string(b)
 }
 
-func (instance *DescribeInstanceReponse) FromJsonString(s string) error {
+func (instance *DescribeInstanceResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &instance)
 }
 
