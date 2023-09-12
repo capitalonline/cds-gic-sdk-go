@@ -41,8 +41,8 @@ func NewDescribeInstanceRequest() (request *DescribeInstanceRequest) {
 	request.Init().WithApiInfo("CCS", ApiVersion, "DescribeInstances")
 	return
 }
-func NewDescribeInstanceResponse() (response *DescribeInstanceReponse) {
-	response = &DescribeInstanceReponse{
+func NewDescribeInstanceResponse() (response *DescribeInstanceResponse) {
+	response = &DescribeInstanceResponse{
 		BaseResponse: &cdshttp.BaseResponse{},
 	}
 	return
@@ -159,7 +159,7 @@ func (c *Client) CreateInstance(request *AddInstanceRequest) (response *AddInsta
 }
 
 // Describe Instance
-func (c *Client) DescribeInstance(request *DescribeInstanceRequest) (response *DescribeInstanceReponse, err error) {
+func (c *Client) DescribeInstance(request *DescribeInstanceRequest) (response *DescribeInstanceResponse, err error) {
 	if request == nil {
 		request = NewDescribeInstanceRequest()
 	}
