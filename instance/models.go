@@ -32,6 +32,7 @@ type AddInstanceRequest struct {
 	UserData           []*string    `json:"UserData,omitempty" name:"UserData"`
 	DescriptionNum     *string      `json:"DescriptionNum,omitempty" name:"DescriptionNum"`
 	LabelNames         []*string    `json:"LabelNames,omitempty" name:"LabelNames"`
+	DeletionProtection []*bool      `json:"DeletionProtection,omitempty" name:"DeletionProtection"`
 }
 
 type SystemDisk struct {
@@ -767,6 +768,39 @@ func (response *GetIpInfoBySegmentResponse) FromJsonString(s string) error {
 }
 
 func (response *GetIpInfoBySegmentResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
+}
+
+
+
+type ChangeVmDelProtectionRequest struct {
+	*cdshttp.BaseRequest
+	InstanceIds []*string
+	DeletionProtection   *bool `json:"DeletionProtection,omitempty" name:"DeletionProtection"`
+}
+
+func (request *ChangeVmDelProtectionRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *ChangeVmDelProtectionRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type ChangeVmDelProtectionResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *ChangeVmDelProtectionResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *ChangeVmDelProtectionResponse) ToJsonString() string {
 	b, _ := json.Marshal(response)
 	return string(b)
 }

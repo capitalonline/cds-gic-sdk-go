@@ -264,3 +264,18 @@ func TestClient_GetIpInfoBySegment(t *testing.T) {
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
 
 }
+
+func TestClient_ChangeVmDelProtection(t *testing.T) {
+	credential := common.NewCredential("", "")
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "POST"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewChangeVmDelProtectionRequest()
+	request.InstanceIds = common.StringPtrs([]string{"instance id"})
+	request.DeletionProtection = common.BoolPtr(false)
+	response, err := client.ChangeVmDelProtection(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
