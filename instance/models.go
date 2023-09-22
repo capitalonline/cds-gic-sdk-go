@@ -32,7 +32,7 @@ type AddInstanceRequest struct {
 	UserData           []*string    `json:"UserData,omitempty" name:"UserData"`
 	DescriptionNum     *string      `json:"DescriptionNum,omitempty" name:"DescriptionNum"`
 	LabelNames         []*string    `json:"LabelNames,omitempty" name:"LabelNames"`
-	DeletionProtection []*bool      `json:"DeletionProtection,omitempty" name:"DeletionProtection"`
+	DeletionProtection *bool        `json:"DeletionProtection,omitempty" name:"DeletionProtection"`
 }
 
 type SystemDisk struct {
@@ -772,12 +772,10 @@ func (response *GetIpInfoBySegmentResponse) ToJsonString() string {
 	return string(b)
 }
 
-
-
 type ChangeVmDelProtectionRequest struct {
 	*cdshttp.BaseRequest
-	InstanceIds []*string
-	DeletionProtection   *bool `json:"DeletionProtection,omitempty" name:"DeletionProtection"`
+	InstanceIds        []*string
+	DeletionProtection *bool `json:"DeletionProtection,omitempty" name:"DeletionProtection"`
 }
 
 func (request *ChangeVmDelProtectionRequest) FromJsonString(s string) error {
