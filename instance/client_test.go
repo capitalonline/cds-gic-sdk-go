@@ -34,6 +34,7 @@ func TestClient_CreateInstance(t *testing.T) {
 	request.UTC = common.BoolPtr(false)                 //7960400
 	request.DescriptionNum = common.StringPtr("001")
 	request.LabelNames = common.StringPtrs([]string{"label_name"})
+	request.DeletionProtection = common.BoolPtr(true)
 
 	dd1 := DataDisk{
 		Size: common.IntPtr(200),
@@ -261,6 +262,21 @@ func TestClient_GetIpInfoBySegment(t *testing.T) {
 	request.Segment = common.StringPtr("segment_info")
 
 	response, err := client.GetIpInfoBySegment(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
+
+func TestClient_ChangeVmDelProtection(t *testing.T) {
+	credential := common.NewCredential(ak, sk)
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "POST"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewChangeVmDelProtectionRequest()
+	request.InstanceIds = common.StringPtrs([]string{"instance_id"})
+	request.DeletionProtection = common.BoolPtr(true)
+	response, err := client.ChangeVmDelProtection(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
 
 }

@@ -525,3 +525,28 @@ func (c *Client) GetIpInfoBySegment(request *GetIpInfoBySegmentRequest) (respons
 	err = c.Send(request, response)
 	return
 }
+
+func NewChangeVmDelProtectionRequest() *ChangeVmDelProtectionRequest {
+	request := &ChangeVmDelProtectionRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "ModifyInstanceAttribute")
+	return request
+}
+
+func NewChangeVmDelProtectionResponse() *ChangeVmDelProtectionResponse {
+	response := &ChangeVmDelProtectionResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+
+func (c *Client) ChangeVmDelProtection(request *ChangeVmDelProtectionRequest) (response *ChangeVmDelProtectionResponse, err error) {
+	if request == nil {
+		request = NewChangeVmDelProtectionRequest()
+	}
+	response = NewChangeVmDelProtectionResponse()
+	err = c.Send(request, response)
+	return
+}
