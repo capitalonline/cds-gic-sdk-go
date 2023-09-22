@@ -274,7 +274,7 @@ func TestClient_ChangeVmDelProtection(t *testing.T) {
 	client, _ := NewClient(credential, regions.Beijing, cpf)
 
 	request := NewChangeVmDelProtectionRequest()
-	request.InstanceIds = common.StringPtrs([]string{"c5fe3988-96fc-40fb-a7e5-40f7e22e64e5"})
+	request.InstanceIds = common.StringPtrs([]string{"instance_id"})
 	request.DeletionProtection = common.BoolPtr(true)
 	response, err := client.ChangeVmDelProtection(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
