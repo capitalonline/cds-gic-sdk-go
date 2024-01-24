@@ -78,7 +78,7 @@ func (instance *AddInstanceResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &instance)
 }
 
-//Describe Instance Request
+// Describe Instance Request
 type DescribeInstanceRequest struct {
 	*cdshttp.BaseRequest
 	VdcId      *string   `json:"VdcId,omitempty"`
@@ -799,6 +799,111 @@ func (response *ChangeVmDelProtectionResponse) FromJsonString(s string) error {
 }
 
 func (response *ChangeVmDelProtectionResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
+}
+
+type AllocateDedicatedHostsRequest struct {
+	*cdshttp.BaseRequest
+	SiteId              string `json:"SiteId"`
+	DedicatedHostType   string `json:"DedicatedHostType"`
+	DedicatedHostGoodId int    `json:"DedicatedHostGoodId"`
+	DedicatedHostName   string `json:"DedicatedHostName"`
+	DedicatedHostCpu    int    `json:"DedicatedHostCpu"`
+	DedicatedHostLimit  int    `json:"DedicatedHostLimit"`
+	DedicatedHostRam    int    `json:"DedicatedHostRam"`
+	PrepaidMonth        int    `json:"PrepaidMonth"`
+	AutoRenew           int    `json:"AutoRenew"`
+	Amount              int    `json:"Amount"`
+	DescriptionNum      bool   `json:"DescriptionNum"`
+	SubjectId           int    `json:"SubjectId"`
+}
+
+func (request *AllocateDedicatedHostsRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *AllocateDedicatedHostsRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type AllocateDedicatedHostsResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *AllocateDedicatedHostsResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *AllocateDedicatedHostsResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
+}
+
+type DescribeDedicatedHostsRequest struct {
+	*cdshttp.BaseRequest
+
+	HostId     string `json:"HostId"`
+	PageNumber int    `json:"PageNumber"`
+	PageSize   int    `json:"PageSize"`
+	HostName   string `json:"HostName"`
+}
+
+func (request *DescribeDedicatedHostsRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *DescribeDedicatedHostsRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type DescribeDedicatedHostsResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *DescribeDedicatedHostsResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *DescribeDedicatedHostsResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
+}
+
+type DescribeDedicatedHostTypesRequest struct {
+	*cdshttp.BaseRequest
+	SiteId string `json:"SiteId"`
+}
+
+func (request *DescribeDedicatedHostTypesRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *DescribeDedicatedHostTypesRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type DescribeDedicatedHostTypesResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string      `json:"Code,omitempty" name:"Code"`
+	Message *string      `json:"Message,omitempty" name:"Message"`
+	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *DescribeDedicatedHostTypesResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *DescribeDedicatedHostTypesResponse) ToJsonString() string {
 	b, _ := json.Marshal(response)
 	return string(b)
 }
