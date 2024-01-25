@@ -33,6 +33,7 @@ type AddInstanceRequest struct {
 	DescriptionNum     *string      `json:"DescriptionNum,omitempty" name:"DescriptionNum"`
 	LabelNames         []*string    `json:"LabelNames,omitempty" name:"LabelNames"`
 	DeletionProtection *bool        `json:"DeletionProtection,omitempty" name:"DeletionProtection"`
+	HostName           *string      `json:"HostName,omitempty" name:"HostName"`
 }
 
 type SystemDisk struct {
@@ -805,7 +806,7 @@ func (response *ChangeVmDelProtectionResponse) ToJsonString() string {
 
 type AllocateDedicatedHostsRequest struct {
 	*cdshttp.BaseRequest
-	SiteId              *string `json:"SiteId,omitempty"`
+	RegionId            *string `json:"RegionId,omitempty"`
 	DedicatedHostType   *string `json:"DedicatedHostType,omitempty"`
 	DedicatedHostGoodId *int    `json:"DedicatedHostGoodId,omitempty"`
 	DedicatedHostName   *string `json:"DedicatedHostName,omitempty"`
@@ -900,7 +901,7 @@ func (response *DescribeDedicatedHostsResponse) ToJsonString() string {
 
 type DescribeDedicatedHostTypesRequest struct {
 	*cdshttp.BaseRequest
-	SiteId *string `json:"SiteId,omitempty"`
+	RegionId *string `json:"RegionId,omitempty"`
 }
 
 func (request *DescribeDedicatedHostTypesRequest) FromJsonString(s string) error {
@@ -914,9 +915,23 @@ func (request *DescribeDedicatedHostTypesRequest) ToJsonString() string {
 
 type DescribeDedicatedHostTypesResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string      `json:"Code,omitempty" name:"Code"`
-	Message *string      `json:"Message,omitempty" name:"Message"`
-	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+	Code    *string                                   `json:"Code,omitempty" name:"Code"`
+	Message *string                                   `json:"Message,omitempty" name:"Message"`
+	Data    []*DescribeDedicatedHostTypesResponseData `json:"Data,omitempty" name:"Data"`
+}
+
+type DescribeDedicatedHostTypesResponseData struct {
+	BillSchemeId      string `json:"BillSchemeId"`
+	Cpu               int    `json:"Cpu"`
+	GoodsId           int    `json:"GoodsId"`
+	Ram               int    `json:"Ram"`
+	VmFamilyId        string `json:"VmFamilyId"`
+	VmRuleName        string `json:"VmRuleName"`
+	VmSpecId          string `json:"VmSpecId"`
+	VmTypeDescription string `json:"VmTypeDescription"`
+	VmTypeId          string `json:"VmTypeId"`
+	VmTypeName        string `json:"VmTypeName"`
+	VmTypeSort        int    `json:"VmTypeSort"`
 }
 
 func (response *DescribeDedicatedHostTypesResponse) FromJsonString(s string) error {
