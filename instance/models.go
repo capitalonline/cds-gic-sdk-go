@@ -805,18 +805,18 @@ func (response *ChangeVmDelProtectionResponse) ToJsonString() string {
 
 type AllocateDedicatedHostsRequest struct {
 	*cdshttp.BaseRequest
-	SiteId              string `json:"SiteId"`
-	DedicatedHostType   string `json:"DedicatedHostType"`
-	DedicatedHostGoodId int    `json:"DedicatedHostGoodId"`
-	DedicatedHostName   string `json:"DedicatedHostName"`
-	DedicatedHostCpu    int    `json:"DedicatedHostCpu"`
-	DedicatedHostLimit  int    `json:"DedicatedHostLimit"`
-	DedicatedHostRam    int    `json:"DedicatedHostRam"`
-	PrepaidMonth        int    `json:"PrepaidMonth"`
-	AutoRenew           int    `json:"AutoRenew"`
-	Amount              int    `json:"Amount"`
-	DescriptionNum      bool   `json:"DescriptionNum"`
-	SubjectId           int    `json:"SubjectId"`
+	SiteId              *string `json:"SiteId,omitempty"`
+	DedicatedHostType   *string `json:"DedicatedHostType,omitempty"`
+	DedicatedHostGoodId *int    `json:"DedicatedHostGoodId,omitempty"`
+	DedicatedHostName   *string `json:"DedicatedHostName,omitempty"`
+	DedicatedHostCpu    *int    `json:"DedicatedHostCpu,omitempty"`
+	DedicatedHostLimit  *int    `json:"DedicatedHostLimit,omitempty"`
+	DedicatedHostRam    *int    `json:"DedicatedHostRam,omitempty"`
+	PrepaidMonth        *int    `json:"PrepaidMonth,omitempty"`
+	AutoRenew           *int    `json:"AutoRenew,omitempty"`
+	Amount              *int    `json:"Amount,omitempty"`
+	DescriptionNum      *bool   `json:"DescriptionNum,omitempty"`
+	SubjectId           *int    `json:"SubjectId,omitempty"`
 }
 
 func (request *AllocateDedicatedHostsRequest) FromJsonString(s string) error {
@@ -847,10 +847,10 @@ func (response *AllocateDedicatedHostsResponse) ToJsonString() string {
 type DescribeDedicatedHostsRequest struct {
 	*cdshttp.BaseRequest
 
-	HostId     string `json:"HostId"`
-	PageNumber int    `json:"PageNumber"`
-	PageSize   int    `json:"PageSize"`
-	HostName   string `json:"HostName"`
+	HostId     *string `json:"HostId,omitempty"`
+	PageNumber *int    `json:"PageNumber,omitempty"`
+	PageSize   *int    `json:"PageSize,omitempty"`
+	HostName   *string `json:"HostName,omitempty"`
 }
 
 func (request *DescribeDedicatedHostsRequest) FromJsonString(s string) error {
@@ -864,9 +864,29 @@ func (request *DescribeDedicatedHostsRequest) ToJsonString() string {
 
 type DescribeDedicatedHostsResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string      `json:"Code,omitempty" name:"Code"`
-	Message *string      `json:"Message,omitempty" name:"Message"`
-	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+	Code    *string                     `json:"Code,omitempty" name:"Code"`
+	Message *string                     `json:"Message,omitempty" name:"Message"`
+	Data    *DescribeDedicatedHostsData `json:"Data,omitempty" name:"Data"`
+}
+
+type DescribeDedicatedHostsData struct {
+	HostList []*DescribeDedicatedHostsDataHost `json:"HostList,omitempty"`
+	Total    *int                              `json:"Total,omitempty"`
+}
+
+type DescribeDedicatedHostsDataHost struct {
+	BillMethod    *string `json:"BillMethod,omitempty"`
+	CpuRate       *string `json:"CpuRate,omitempty"`
+	Duration      *int    `json:"Duration,omitempty"`
+	EndBillTime   *string `json:"EndBillTime,omitempty"`
+	HostId        *string `json:"HostId,omitempty"`
+	HostName      *string `json:"HostName,omitempty"`
+	HostType      *string `json:"HostType,omitempty"`
+	RamRate       *string `json:"RamRate,omitempty"`
+	Region        *string `json:"Region,omitempty"`
+	StartBillTime *string `json:"StartBillTime,omitempty"`
+	Status        *string `json:"Status,omitempty"`
+	VmNum         *int    `json:"VmNum,omitempty"`
 }
 
 func (response *DescribeDedicatedHostsResponse) FromJsonString(s string) error {
@@ -880,7 +900,7 @@ func (response *DescribeDedicatedHostsResponse) ToJsonString() string {
 
 type DescribeDedicatedHostTypesRequest struct {
 	*cdshttp.BaseRequest
-	SiteId string `json:"SiteId"`
+	SiteId *string `json:"SiteId,omitempty"`
 }
 
 func (request *DescribeDedicatedHostTypesRequest) FromJsonString(s string) error {
