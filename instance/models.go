@@ -832,9 +832,9 @@ func (request *AllocateDedicatedHostsRequest) ToJsonString() string {
 
 type AllocateDedicatedHostsResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string      `json:"Code,omitempty" name:"Code"`
-	Message *string      `json:"Message,omitempty" name:"Message"`
-	Data    *interface{} `json:"Data,omitempty" name:"Data"`
+	Code    *string   `json:"Code,omitempty" name:"Code"`
+	Message *string   `json:"Message,omitempty" name:"Message"`
+	Data    []*string `json:"Data,omitempty" name:"Data"`
 }
 
 func (response *AllocateDedicatedHostsResponse) FromJsonString(s string) error {
