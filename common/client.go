@@ -72,12 +72,6 @@ func (c *Client) sendWithSignatureCds(request cdshttp.Request, response cdshttp.
 		for key, value := range request.GetParams() {
 			params[key] = value
 		}
-		var p = make(map[string]interface{})
-		bytes, _ := json.Marshal(request)
-		_ = json.Unmarshal(bytes, &p)
-		for key, value := range p {
-			params[key] = fmt.Sprintf("%v", value)
-		}
 		canonicalQueryString = cdshttp.GetUrlQueriesEncoded(params)
 	}
 	requestPayload := ""
