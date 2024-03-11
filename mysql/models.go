@@ -142,6 +142,7 @@ type CreateDBInstanceRequest struct {
 	Amount       *int    `json:"Amount" name:"Amount"`
 	TimeZone     *string `json:"TimeZone,omitempty" name:"TimeZone"`
 	ServicePort  *int    `json:"ServicePort,omitempty" name:"ServicePort"`
+	SubjectId    *int    `json:"SubjectId,omitempty" name:"SubjectId"`
 }
 
 func (request *CreateDBInstanceRequest) ToJsonString() string {
@@ -461,6 +462,7 @@ type CreateReadOnlyDBInstanceRequest struct {
 	TestGroupId  *int    `json:"TestGroupId,omitempty" name:"TestGroupId"`
 	Amount       *int    `json:"Amount,omitempty" name:"Amount"`
 	ServicePort  *int    `json:"ServicePort,omitempty" name:"ServicePort"`
+	SubjectId    *int    `json:"SubjectId,omitempty" name:"SubjectId"`
 }
 
 func (request *CreateReadOnlyDBInstanceRequest) ToJsonString() string {

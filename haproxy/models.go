@@ -131,6 +131,7 @@ type CreateLoadBalancerRequest struct {
 	PaasGoodsId  *int                     `json:"PaasGoodsId,omitempty" name:"PaasGoodsId"`
 	Ips          []*CreateLoadBalancerIps `json:"Ips,omitempty" name:"Ips"`
 	Amount       *int                     `json:"Amount,omitempty" name:"Amount"`
+	SubjectId    *int                     `json:"SubjectId,omitempty" name:"SubjectId"`
 }
 
 func (request *CreateLoadBalancerRequest) ToJsonString() string {

@@ -922,17 +922,17 @@ type DescribeDedicatedHostTypesResponse struct {
 }
 
 type DescribeDedicatedHostTypesResponseData struct {
-	BillSchemeId      string `json:"BillSchemeId"`
-	Cpu               int    `json:"Cpu"`
-	GoodsId           int    `json:"GoodsId"`
-	Ram               int    `json:"Ram"`
-	VmFamilyId        string `json:"VmFamilyId"`
-	VmRuleName        string `json:"VmRuleName"`
-	VmSpecId          string `json:"VmSpecId"`
-	VmTypeDescription string `json:"VmTypeDescription"`
-	VmTypeId          string `json:"VmTypeId"`
-	VmTypeName        string `json:"VmTypeName"`
-	VmTypeSort        int    `json:"VmTypeSort"`
+	BillSchemeId      *string `json:"BillSchemeId"`
+	Cpu               *int    `json:"Cpu"`
+	GoodsId           *int    `json:"GoodsId"`
+	Ram               *int    `json:"Ram"`
+	VmFamilyId        *string `json:"VmFamilyId"`
+	VmRuleName        *string `json:"VmRuleName"`
+	VmSpecId          *string `json:"VmSpecId"`
+	VmTypeDescription *string `json:"VmTypeDescription"`
+	VmTypeId          *string `json:"VmTypeId"`
+	VmTypeName        *string `json:"VmTypeName"`
+	VmTypeSort        *int    `json:"VmTypeSort"`
 }
 
 func (response *DescribeDedicatedHostTypesResponse) FromJsonString(s string) error {

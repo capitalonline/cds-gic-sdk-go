@@ -138,6 +138,7 @@ type CreateDBInstanceRequest struct {
 	PaasGoodsId  *int    `json:"PaasGoodsId" name:"PaasGoodsId"`
 	Password     *string `json:"Password" name:"Password"`
 	Amount       *int    `json:"Amount" name:"Amount"`
+	SubjectId    *int    `json:"SubjectId,omitempty" name:"SubjectId"`
 }
 
 func (request *CreateDBInstanceRequest) ToJsonString() string {
