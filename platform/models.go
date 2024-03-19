@@ -7,17 +7,6 @@ import (
 
 type DescribeSubjectsRequest struct {
 	*cdshttp.BaseRequest
-	Id                *int    `json:"Id,omitempty" name:"Id"`
-	Name              *string `json:"Name,omitempty" name:"Name"`
-	Balance           *string `json:"Balance,omitempty" name:"Balance"`
-	BeginTime         *string `json:"BeginTime,omitempty" name:"BeginTime"`
-	EndTime           *string `json:"EndTime,omitempty" name:"EndTime"`
-	BillMethod        *string `json:"BillMethod,omitempty" name:"BillMethod"`
-	BillMethodDisplay *string `json:"BillMethodDisplay,omitempty" name:"BillMethodDisplay"`
-	GoodsIds          *string `json:"GoodsIds,omitempty" name:"GoodsIds"`
-	GoodsNames        *string `json:"GoodsNames,omitempty" name:"GoodsNames"`
-	SiteIds           *string `json:"SiteIds,omitempty" name:"SiteIds"`
-	SiteNames         *string `json:"SiteNames,omitempty" name:"SiteNames"`
 }
 
 func (request *DescribeSubjectsRequest) FromJsonString(s string) error {
@@ -32,10 +21,10 @@ func (request *DescribeSubjectsRequest) ToJsonString() string {
 type DescribeSubjectsResponse struct {
 	*cdshttp.BaseResponse
 
-	Code *string `json:"Code,omitempty"`
-	Msg  *string `json:"Msg,omitempty"`
-
-	RequestId *string `json:"RequestId,omitempty"`
+	Code      *string                      `json:"Code,omitempty"`
+	Msg       *string                      `json:"Msg,omitempty"`
+	Data      DescribeSubjectsResponseData `json:"Data,omitempty"`
+	RequestId *string                      `json:"RequestId,omitempty"`
 }
 
 type DescribeSubjectsResponseData struct {

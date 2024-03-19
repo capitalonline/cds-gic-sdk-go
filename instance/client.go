@@ -621,3 +621,27 @@ func (c *Client) DescribeDedicatedHostTypes(request *DescribeDedicatedHostTypesR
 	err = c.Send(request, response)
 	return
 }
+
+func NewModifyInstanceHostNameRequest() *ModifyInstanceHostNameRequest {
+	request := &ModifyInstanceHostNameRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "ModifyInstanceHostName")
+	return request
+}
+
+func NewModifyInstanceAttributeResponse() *ModifyInstanceHostNameResponse {
+	response := &ModifyInstanceHostNameResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) ModifyInstanceAttribute(request *ModifyInstanceHostNameRequest) (response *ModifyInstanceHostNameResponse, err error) {
+	if request == nil {
+		request = NewModifyInstanceHostNameRequest()
+	}
+	response = NewModifyInstanceAttributeResponse()
+	err = c.Send(request, response)
+	return
+}

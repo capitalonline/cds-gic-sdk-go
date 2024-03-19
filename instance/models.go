@@ -866,9 +866,9 @@ func (request *DescribeDedicatedHostsRequest) ToJsonString() string {
 
 type DescribeDedicatedHostsResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string                     `json:"Code,omitempty" name:"Code"`
-	Message *string                     `json:"Message,omitempty" name:"Message"`
-	Data    *DescribeDedicatedHostsData `json:"Data,omitempty" name:"Data"`
+	Code    *string                    `json:"Code,omitempty" name:"Code"`
+	Message *string                    `json:"Message,omitempty" name:"Message"`
+	Data    DescribeDedicatedHostsData `json:"Data,omitempty" name:"Data"`
 }
 
 type DescribeDedicatedHostsData struct {
@@ -940,6 +940,38 @@ func (response *DescribeDedicatedHostTypesResponse) FromJsonString(s string) err
 }
 
 func (response *DescribeDedicatedHostTypesResponse) ToJsonString() string {
+	b, _ := json.Marshal(response)
+	return string(b)
+}
+
+type ModifyInstanceHostNameRequest struct {
+	*cdshttp.BaseRequest
+	InstanceId *string `json:"InstanceId,omitempty" name:"InstanceId"`
+	HostName   *string `json:"HostName,omitempty" name:"HostName"`
+	Password   *string `json:"Password" name:"Password"`
+}
+
+func (request *ModifyInstanceHostNameRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &request)
+}
+
+func (request *ModifyInstanceHostNameRequest) ToJsonString() string {
+	b, _ := json.Marshal(request)
+	return string(b)
+}
+
+type ModifyInstanceHostNameResponse struct {
+	*cdshttp.BaseResponse
+	Code    *string     `json:"Code,omitempty" name:"Code"`
+	Message *string     `json:"Message,omitempty" name:"Message"`
+	Data    interface{} `json:"Data,omitempty" name:"Data"`
+}
+
+func (response *ModifyInstanceHostNameResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &response)
+}
+
+func (response *ModifyInstanceHostNameResponse) ToJsonString() string {
 	b, _ := json.Marshal(response)
 	return string(b)
 }

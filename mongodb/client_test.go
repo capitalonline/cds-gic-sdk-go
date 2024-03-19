@@ -57,6 +57,7 @@ func TestCreateDBInstance(t *testing.T) {
 	request.DiskValue = common.IntPtr(100)
 	request.Password = common.StringPtr("test_sdfaferdfd12312@213")
 	request.Version = common.StringPtr("3.2.21")
+	request.SubjectId = common.IntPtr(2342)
 	response, err := client.CreateDBInstance(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
 }
