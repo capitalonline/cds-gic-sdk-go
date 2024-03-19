@@ -10,11 +10,10 @@ import (
 )
 
 func TestClient_DescribeTask(t *testing.T) {
-	credential := common.NewCredential("eb4796589e1d11ee92ba0a18980946d7", "a1833d5911612ea9b5e3e5c6dc59eef1")
+	credential := common.NewCredential("", "")
 
 	cpftask := profile.NewClientProfile()
 	cpftask.HttpProfile.ReqMethod = "GET"
-	//cpftask.HttpProfile.Endpoint = "gateway.gic.test/openapi/ccs"
 	taskclient, _ := NewClient(credential, regions.Beijing, cpftask)
 
 	taskRequest := NewDescribeTaskRequest()

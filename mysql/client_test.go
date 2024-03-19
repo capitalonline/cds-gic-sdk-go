@@ -36,15 +36,14 @@ func TestClient(t *testing.T) {
 }
 
 func TestClient_DescribeDBInstances(t *testing.T) {
-	credential := common.NewCredential("abc07d56422e11eea9798e96c407823e", "b9042f4c207d6b59fdcb9bc99f655928")
+	credential := common.NewCredential("", "")
 
 	cpf := profile.NewClientProfile()
 	cpf.HttpProfile.ReqMethod = "GET"
-	//cpf.HttpProfile.Endpoint = "gateway.gic.test/openapi/ccs"
 	client, _ := NewClient(credential, regions.Beijing, cpf)
 
 	request := NewDescribeDBInstancesRequest()
-	//request.InstanceUuid = common.StringPtr("26de01dc-e1c8-11ee-96b3-ea38d02cc52b")
+	request.InstanceUuid = common.StringPtr("")
 	response, err := client.DescribeDBInstances(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %v", response.ToJsonString(), err)
 
