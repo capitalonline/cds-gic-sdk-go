@@ -962,9 +962,9 @@ func (request *ModifyInstanceHostNameRequest) ToJsonString() string {
 
 type ModifyInstanceHostNameResponse struct {
 	*cdshttp.BaseResponse
-	Code    *string     `json:"Code,omitempty" name:"Code"`
-	Message *string     `json:"Message,omitempty" name:"Message"`
-	Data    interface{} `json:"Data,omitempty" name:"Data"`
+	Code    *string `json:"Code,omitempty" name:"Code"`
+	Message *string `json:"Message,omitempty" name:"Message"`
+	//Data    interface{} `json:"Data,omitempty" name:"Data"`
 }
 
 func (response *ModifyInstanceHostNameResponse) FromJsonString(s string) error {

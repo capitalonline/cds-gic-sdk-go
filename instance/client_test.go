@@ -345,9 +345,9 @@ func TestClient_ModifyInstanceHostName(t *testing.T) {
 
 	request := NewModifyInstanceHostNameRequest()
 	request.InstanceId = common.StringPtr("")
-	request.HostName = common.StringPtr("dyl-hostname-new")
-	request.Password = common.StringPtr("123P@ssW0rd")
-	response, err := client.ModifyInstanceAttribute(request)
+	request.HostName = common.StringPtr("hostname")
+	request.Password = common.StringPtr("p@ssw0rd")
+	response, err := client.ModifyInstanceHostName(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %v", response.ToJsonString(), err)
 
 }

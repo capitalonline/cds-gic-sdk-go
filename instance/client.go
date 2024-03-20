@@ -630,18 +630,18 @@ func NewModifyInstanceHostNameRequest() *ModifyInstanceHostNameRequest {
 	return request
 }
 
-func NewModifyInstanceAttributeResponse() *ModifyInstanceHostNameResponse {
+func NewModifyInstanceHostNameResponse() *ModifyInstanceHostNameResponse {
 	response := &ModifyInstanceHostNameResponse{
 		BaseResponse: &cdshttp.BaseResponse{},
 	}
 	return response
 }
 
-func (c *Client) ModifyInstanceAttribute(request *ModifyInstanceHostNameRequest) (response *ModifyInstanceHostNameResponse, err error) {
+func (c *Client) ModifyInstanceHostName(request *ModifyInstanceHostNameRequest) (response *ModifyInstanceHostNameResponse, err error) {
 	if request == nil {
 		request = NewModifyInstanceHostNameRequest()
 	}
-	response = NewModifyInstanceAttributeResponse()
+	response = NewModifyInstanceHostNameResponse()
 	err = c.Send(request, response)
 	return
 }
