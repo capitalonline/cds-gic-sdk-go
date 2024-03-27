@@ -30,7 +30,7 @@ func TestClient_CreateVdc(t *testing.T) {
 		//AutoRenew:      common.StringPtr("1"),
 		Type: common.StringPtr("Bandwidth_BGP"),
 	}
-
+	tp.SubjectId = common.IntPtr(2348)
 	resp, err := client.CreateVdc(tp)
 
 	if err != nil {

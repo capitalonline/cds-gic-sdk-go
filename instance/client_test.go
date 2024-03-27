@@ -9,8 +9,8 @@ import (
 	"testing"
 )
 
-var ak string = "xxxxxx"
-var sk string = "xxxxxx"
+var ak string = ""
+var sk string = ""
 
 func TestClient_CreateInstance(t *testing.T) {
 	credential := common.NewCredential(ak, sk)
@@ -278,5 +278,76 @@ func TestClient_ChangeVmDelProtection(t *testing.T) {
 	request.DeletionProtection = common.BoolPtr(true)
 	response, err := client.ChangeVmDelProtection(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
+
+func TestClient_AllocateDedicatedHosts(t *testing.T) {
+	credential := common.NewCredential("", "")
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "POST"
+	//cpf.HttpProfile.Endpoint = "gateway.gic.test/openapi/ccs"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewAllocateDedicatedHostsRequest()
+	//request.RegionId = common.StringPtr("CN_Hongkong_B")
+	request.DedicatedHostType = common.StringPtr("xxx")
+	request.DedicatedHostGoodId = common.IntPtr(6195)
+	request.DedicatedHostCpu = common.IntPtr(24)
+	request.DedicatedHostRam = common.IntPtr(345)
+	request.Amount = common.IntPtr(1)
+	request.DedicatedHostLimit = common.IntPtr(1)
+	request.DedicatedHostName = common.StringPtr("pytest")
+	request.PrepaidMonth = common.IntPtr(0)
+	request.AutoRenew = common.IntPtr(1)
+	response, err := client.AllocateDedicatedHosts(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
+
+}
+
+func TestClient_DescribeDedicatedHosts(t *testing.T) {
+	//credential := common.NewCredential(ak, sk)
+	credential := common.NewCredential("", "")
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "GET"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewDescribeDedicatedHostsRequest()
+	request.HostName = common.StringPtr("测试宿主机002")
+	request.PageNumber = common.IntPtr(1)
+	request.PageSize = common.IntPtr(20)
+	response, err := client.DescribeDedicatedHosts(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %v", response.ToJsonString(), err)
+
+}
+
+func TestClient_DescribeDedicatedHostTypes(t *testing.T) {
+	credential := common.NewCredential("", "")
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "GET"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewDescribeDedicatedHostTypesRequest()
+	request.RegionId = common.StringPtr("CN_Beijing_h")
+	response, err := client.DescribeDedicatedHostTypes(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %v", response.ToJsonString(), err)
+
+}
+
+func TestClient_ModifyInstanceHostName(t *testing.T) {
+	credential := common.NewCredential("", "")
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "POST"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewModifyInstanceHostNameRequest()
+	request.InstanceId = common.StringPtr("")
+	request.HostName = common.StringPtr("hostname")
+	request.Password = common.StringPtr("p@ssw0rd")
+	response, err := client.ModifyInstanceHostName(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %v", response.ToJsonString(), err)
 
 }

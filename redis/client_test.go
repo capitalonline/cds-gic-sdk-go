@@ -32,7 +32,7 @@ func TestDescribeRegions(t *testing.T) {
 }
 
 func TestRedisDescribeAvailableDBConfig(t *testing.T) {
-	credential := common.NewCredential(s_id, s_key)
+	credential := common.NewCredential("", "")
 	cpf := clientProfile("GET")
 	client, _ := NewClient(credential, regions.Beijing, cpf)
 	request := NewDescribeAvailableDBConfigRequest()
@@ -54,6 +54,7 @@ func TestRedisCreateDBInstance(t *testing.T) {
 	request.PaasGoodsId = common.IntPtr(12467)
 	request.Password = common.StringPtr("test_redis123")
 	request.Amount = common.IntPtr(1)
+	request.SubjectId = common.IntPtr(23423)
 	response, err := client.CreateDBInstance(request)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", response.ToJsonString(), err)
 

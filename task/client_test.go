@@ -17,7 +17,7 @@ func TestClient_DescribeTask(t *testing.T) {
 	taskclient, _ := NewClient(credential, regions.Beijing, cpftask)
 
 	taskRequest := NewDescribeTaskRequest()
-	taskRequest.TaskId = common.StringPtr("task id")
+	taskRequest.TaskId = common.StringPtr("29869364")
 	taskResponse, err := taskclient.DescribeTask(taskRequest)
 	fmt.Printf(">>>>> Resonponse: %s, err: %s", taskResponse.ToJsonString(), err)
 }

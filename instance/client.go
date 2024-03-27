@@ -541,12 +541,107 @@ func NewChangeVmDelProtectionResponse() *ChangeVmDelProtectionResponse {
 	return response
 }
 
-
 func (c *Client) ChangeVmDelProtection(request *ChangeVmDelProtectionRequest) (response *ChangeVmDelProtectionResponse, err error) {
 	if request == nil {
 		request = NewChangeVmDelProtectionRequest()
 	}
 	response = NewChangeVmDelProtectionResponse()
+	err = c.Send(request, response)
+	return
+}
+
+func NewAllocateDedicatedHostsRequest() *AllocateDedicatedHostsRequest {
+	request := &AllocateDedicatedHostsRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "AllocateDedicatedHosts")
+	return request
+}
+
+func NewAllocateDedicatedHostsResponse() *AllocateDedicatedHostsResponse {
+	response := &AllocateDedicatedHostsResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) AllocateDedicatedHosts(request *AllocateDedicatedHostsRequest) (response *AllocateDedicatedHostsResponse, err error) {
+	if request == nil {
+		request = NewAllocateDedicatedHostsRequest()
+	}
+	response = NewAllocateDedicatedHostsResponse()
+	err = c.Send(request, response)
+	return
+}
+
+func NewDescribeDedicatedHostsRequest() *DescribeDedicatedHostsRequest {
+	request := &DescribeDedicatedHostsRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "DescribeDedicatedHosts")
+	return request
+}
+
+func NewDescribeDedicatedHostsResponse() *DescribeDedicatedHostsResponse {
+	response := &DescribeDedicatedHostsResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) DescribeDedicatedHosts(request *DescribeDedicatedHostsRequest) (response *DescribeDedicatedHostsResponse, err error) {
+	if request == nil {
+		request = NewDescribeDedicatedHostsRequest()
+	}
+	response = NewDescribeDedicatedHostsResponse()
+	err = c.Send(request, response)
+	return
+}
+
+func NewDescribeDedicatedHostTypesRequest() *DescribeDedicatedHostTypesRequest {
+	request := &DescribeDedicatedHostTypesRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "DescribeDedicatedHostTypes")
+	return request
+}
+
+func NewDescribeDedicatedHostTypesResponse() *DescribeDedicatedHostTypesResponse {
+	response := &DescribeDedicatedHostTypesResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) DescribeDedicatedHostTypes(request *DescribeDedicatedHostTypesRequest) (response *DescribeDedicatedHostTypesResponse, err error) {
+	if request == nil {
+		request = NewDescribeDedicatedHostTypesRequest()
+	}
+	response = NewDescribeDedicatedHostTypesResponse()
+	err = c.Send(request, response)
+	return
+}
+
+func NewModifyInstanceHostNameRequest() *ModifyInstanceHostNameRequest {
+	request := &ModifyInstanceHostNameRequest{
+		BaseRequest: &cdshttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("CCS", ApiVersion, "ModifyInstanceHostName")
+	return request
+}
+
+func NewModifyInstanceHostNameResponse() *ModifyInstanceHostNameResponse {
+	response := &ModifyInstanceHostNameResponse{
+		BaseResponse: &cdshttp.BaseResponse{},
+	}
+	return response
+}
+
+func (c *Client) ModifyInstanceHostName(request *ModifyInstanceHostNameRequest) (response *ModifyInstanceHostNameResponse, err error) {
+	if request == nil {
+		request = NewModifyInstanceHostNameRequest()
+	}
+	response = NewModifyInstanceHostNameResponse()
 	err = c.Send(request, response)
 	return
 }

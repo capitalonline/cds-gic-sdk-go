@@ -3,6 +3,7 @@ package mysql
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/capitalonline/cds-gic-sdk-go/common/regions"
 	"testing"
 
 	"github.com/capitalonline/cds-gic-sdk-go/common"
@@ -32,4 +33,18 @@ func TestClient(t *testing.T) {
 	bytes, _ := json.Marshal(response)
 
 	fmt.Println(string(bytes))
+}
+
+func TestClient_DescribeDBInstances(t *testing.T) {
+	credential := common.NewCredential("", "")
+
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.ReqMethod = "GET"
+	client, _ := NewClient(credential, regions.Beijing, cpf)
+
+	request := NewDescribeDBInstancesRequest()
+	request.InstanceUuid = common.StringPtr("")
+	response, err := client.DescribeDBInstances(request)
+	fmt.Printf(">>>>> Resonponse: %s, err: %v", response.ToJsonString(), err)
+
 }

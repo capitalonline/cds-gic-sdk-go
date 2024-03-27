@@ -13,6 +13,7 @@ type AddVdcRequest struct {
 	RegionId      *string        `json:"RegionId" name:"RegionId"`
 	VdcName       *string        `json:"VdcName" name:"VdcName"`
 	PublicNetwork *PublicNetwork `json:"PublicNetwork,omitempty" name:"PublicNetwork"`
+	SubjectId     *int           `json:"SubjectId,omitempty" name:"SubjectId"`
 }
 
 func (r *AddVdcRequest) ToJsonString() string {
@@ -52,7 +53,7 @@ func (r *AddVdcResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
 }
 
-//Describe VDC Request
+// Describe VDC Request
 type DescVdcRequest struct {
 	*cdshttp.BaseRequest
 	VdcId      *string `json:"VdcId" name:"VdcId"`
@@ -71,7 +72,7 @@ func (r *DescVdcRequest) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
 }
 
-//Describe VDC Reponse
+// Describe VDC Reponse
 type DescVdcResponse struct {
 	*cdshttp.BaseResponse
 	Message *string        `json:"Message"`
@@ -472,6 +473,7 @@ type CreatePublicNetworkRequest struct {
 	IPNum          *int    `json:"IPNum,omitempty" name:"IPNum" tf:"ipnum"`
 	AutoRenew      *int    `json:"AutoRenew,omitempty" name:"AutoRenew" tf:"autorenew"`
 	FloatBandwidth *int    `json:"FloatBandwidth,omitempty" name:"FloatBandwidth" tf:"floatbandwidth"`
+	SubjectId      *int    `json:"SubjectId,omitempty" name:"SubjectId"`
 }
 
 func (c *CreatePublicNetworkRequest) ToJsonString() string {

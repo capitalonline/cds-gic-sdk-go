@@ -15,8 +15,9 @@ const (
 	POST = "POST"
 	GET  = "GET"
 
-	RootDomain = "cdsapi.capitalonline.net"
-	Path       = "/"
+	RootDomain    = "cdsapi.capitalonline.net"
+	Path          = "/"
+	RootDomainNew = "api.capitalonline.net"
 )
 
 type Request interface {

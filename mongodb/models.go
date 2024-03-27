@@ -140,6 +140,7 @@ type CreateDBInstanceRequest struct {
 	DiskValue    *int    `json:"DiskValue" name:"DiskValue"`
 	Password     *string `json:"Password" name:"Password"`
 	Version      *string `json:"Version" name:"Version"`
+	SubjectId    *int    `json:"SubjectId,omitempty" name:"SubjectId"`
 }
 
 func (request *CreateDBInstanceRequest) ToJsonString() string {
