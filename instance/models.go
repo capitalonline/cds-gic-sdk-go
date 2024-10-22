@@ -35,6 +35,7 @@ type AddInstanceRequest struct {
 	DeletionProtection *bool        `json:"DeletionProtection,omitempty" name:"DeletionProtection"`
 	HostName           *string      `json:"HostName,omitempty" name:"HostName"`
 	SubjectId          *int         `json:"SubjectId,omitempty" name:"SubjectId"`
+	DedicatedHostId    *string      `json:"DedicatedHostId,omitempty" name:"DedicatedHostId"`
 }
 
 type SystemDisk struct {
